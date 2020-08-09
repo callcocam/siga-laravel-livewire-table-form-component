@@ -1,0 +1,27 @@
+<?php
+/**
+ * Created by Claudio Campos.
+ * User: callcocam@gmail.com, contato@sigasmart.com.br
+ * https://www.sigasmart.com.br
+ */
+namespace DummyNameSpace;
+
+use App\DummyModel;
+use Call\LaravelLivewireForms\AbstractFormComponent;
+use Call\LaravelLivewireForms\Fields\Field;
+
+class DummyComponent extends AbstractFormComponent
+{
+    public function query()
+    {
+        return DummyModel::query();
+    }
+
+    public function fields()
+    {
+        return [
+            Field::make('Name')->input()->rules('required'),
+        ];
+    }
+
+}

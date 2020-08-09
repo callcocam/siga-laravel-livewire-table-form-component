@@ -1,0 +1,35 @@
+<?php
+/**
+ * Created by Claudio Campos.
+ * User: callcocam@gmail.com, contato@sigasmart.com.br
+ * https://www.sigasmart.com.br
+ */
+namespace DummyNameSpace;
+
+use App\DummyModel;
+use Illuminate\Database\Eloquent\Builder;
+use Call\LaravelLivewireTables\Views\Column;
+use Call\LaravelLivewireTables\TableComponent;
+
+class DummyComponent extends TableComponent
+{
+    public function query(): Builder
+    {
+        return DummyModel::query();
+    }
+
+    public function columns() : array
+    {
+        return [
+            Column::make('ID')
+                ->searchable()
+                ->sortable(),
+            Column::make('Name')
+                ->searchable()
+                ->sortable(),
+            Column::make('Actions')
+                ->view('backend.auth.user.includes.actions'),
+        ];
+    }
+
+}

@@ -13,5 +13,21 @@
             "name": "Claudio Campos",
             "email": "callcocam@gmail.com"
         }
-    ]
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "files": [
+            "src/helper.php"
+        ],
+        "psr-4": {
+            "Call\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Call\\ServiceProvider"
+            ]
+        }
+    }
 }
