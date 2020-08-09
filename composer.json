@@ -1,0 +1,17 @@
+{
+    "name": "callcocam/siga-laravel-livewire-table-form-component",
+    "description": "Constru\u0000\u0000o de formularios e tabelas pa livewire",
+    "require": {
+        "livewire/livewire": "^1.3"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.3",
+        "barryvdh/laravel-ide-helper": "^2.7"
+    },
+    "authors": [
+        {
+            "name": "Claudio Campos",
+            "email": "callcocam@gmail.com"
+        }
+    ]
+}
