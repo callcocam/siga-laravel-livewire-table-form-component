@@ -16,6 +16,7 @@ Route::livewire('/auth', 'admin.auth.register-form');
 #Making Table Components
 
 Using the make command:
+
 `
 php artisan make:table Admin/Users/UserTable --model=User
 `

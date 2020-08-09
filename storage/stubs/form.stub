@@ -7,10 +7,10 @@
 namespace DummyNameSpace;
 
 use App\DummyModel;
-use Call\LaravelLivewireForms\AbstractFormComponent;
-use Call\LaravelLivewireForms\Fields\Field;
+use Call\LaravelLivewireForms\FormComponent;
+use Call\LaravelLivewireForms\Fields\Component\FieldComponent;
 
-class DummyComponent extends AbstractFormComponent
+class DummyComponent extends FormComponent
 {
     public function query()
     {
@@ -20,7 +20,7 @@ class DummyComponent extends AbstractFormComponent
     public function fields()
     {
         return [
-            Field::make('Name')->input()->rules('required'),
+            FieldComponent::make('Name')->input()->rules('required'),
         ];
     }
 
