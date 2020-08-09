@@ -1,6 +1,7 @@
 {
     "name": "callcocam/siga-laravel-livewire-table-form-component",
     "description": "Constru\u0000\u0000o de formularios e tabelas pa livewire",
+    "license": "MIT",
     "require": {
         "livewire/livewire": "^1.3"
     },
