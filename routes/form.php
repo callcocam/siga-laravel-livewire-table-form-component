@@ -5,4 +5,3 @@ Route::group(['middleware' => 'web'], function () {
     })->name('lw-forms.file-upload');
 });
 
-Route::livewire('/admin/register', 'admin.auth.register-form');
