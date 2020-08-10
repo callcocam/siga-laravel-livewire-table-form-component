@@ -33,22 +33,22 @@ class CallServiceProvider extends ServiceProviderAlias
     {
         Route::middleware('web')
             ->namespace("App\Http\Controllers")
-            ->group(base_path('packages/callcocam/routes/call.php'));
+            ->group( __DIR__.'/../../routes/call.php');
     }
 
 
     protected function loadPublishs(){
 
         $this->publishes([
-            __DIR__.'/../config/call.php' => config_path('call.php'),
+            __DIR__.'/../../config/call.php' => config_path('call.php'),
         ]);
 
         $this->publishes([
-            __DIR__.'/../resources' => resource_path(),
+            __DIR__.'/../../resources' => resource_path(),
         ]);
 
         $this->publishes([
-            __DIR__.'/package.json' => base_path('package.json'),
+            __DIR__.'/../../package.json' => base_path('package.json'),
         ]);
 
     }
