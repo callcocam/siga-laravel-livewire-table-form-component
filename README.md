@@ -37,7 +37,8 @@ php artisan make:table Admin/Users/UserTable --model=User
 `
 
 Using route table component:<br />
-`
 // Route
+<br />
+`
 Route::livewire('/auth', 'admin.users.user-table-form');
 `
