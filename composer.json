@@ -27,7 +27,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Call\\ServiceProvider"
+                "Call\\Providers\\CallServiceProvider"
             ]
         }
     }
