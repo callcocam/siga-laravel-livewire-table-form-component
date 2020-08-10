@@ -1,12 +1,20 @@
 #SIGA LIVIWIRE TABLE & FORM COMPONENTS
 
-Install The Package<br />
+#Install The Package livewire
+<br />
 <br />
 `
 composer require livewire/livewire
 `
 
-
+#Install The Package siga-laravel-livewire-table-form-component
+<br />
+<br />
+`
+composer require callcocam/siga-laravel-livewire-table-form-component
+`
+<br />
+<br />
 #Making Form Components
 
 Using the make command:<br />
