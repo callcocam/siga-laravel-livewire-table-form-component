@@ -1,4 +1,3 @@
-
 <div class="container mt--6">
     <div class="row">
         <div class="col">
@@ -9,6 +8,13 @@
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
+                    <div>
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                    </div>
                     @if (is_numeric($refresh))
                         <div class="{{ $wrapperClass }}" wire:poll.{{ $refresh }}.ms>
                             @elseif (is_string($refresh))
@@ -33,7 +39,6 @@
                                                     @if (is_string($responsive))
                                                 </div>
                                             @endif
-
                                             @include('lw-tables::includes._pagination')
                                             @if (is_numeric($refresh))
                                         </div>

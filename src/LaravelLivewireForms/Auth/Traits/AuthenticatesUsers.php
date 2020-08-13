@@ -23,8 +23,10 @@ trait AuthenticatesUsers
 
     public function saveAndStayResponse()
     {
-        if($this->guard()->check())
-        return "admin";
+        if($this->guard()->check()){
+            return "admin";
+        }
+
 
         return 'login';
     }
@@ -92,7 +94,7 @@ trait AuthenticatesUsers
     {
         request()->session()->regenerate();
 
-        return redirect()->route($this->redirectPath());
+        return redirect()->intended($this->redirectPath());
     }
 
     /**

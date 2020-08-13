@@ -15,10 +15,11 @@ use Illuminate\Support\Str;
 abstract class AbstractCommand extends Command
 {
 
+    protected $type="";
 
     public function handle()
     {
-        $namespaceAndName = $this->argument('name');
+        $namespaceAndName = sprintf("%s%s",$this->argument('name'), $this->type);
 
         $explode = explode("/", $namespaceAndName);
 
@@ -33,7 +34,7 @@ abstract class AbstractCommand extends Command
         $stub = str_replace('DummyComponent', $name, $stub);
         $stub = str_replace('DummyModel', $this->option('model'), $stub);
         $stub = str_replace('DummyRoute', Str::slug(Str::plural($this->option('model'))), $stub);
-        $path = app_path('Http/Livewire/' . $namespaceAndName.'.php');
+        $path = app_path(sprintf('Http/Livewire/%s.php',$namespaceAndName));
 
         File::ensureDirectoryExists(app_path(str_replace("\\", "/", sprintf("Http\Livewire\%s", $namespace))));
 

@@ -28,8 +28,22 @@ class DummyComponent extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make('Actions')
-                ->view('backend.auth.user.includes.actions'),
+            ->components([
+               Link::make('Edit')
+                   ->icon('fas fa-pencil-alt')
+                   ->class('btn btn-primary btn-sm')
+                   ->href(function($model) {
+                       return route(sprintf('admin.%s.edit', $this->route()), $model->id);
+                   }),
+               Link::make('Delete') ->icon('fas fa-pencil-alt')
+                   ->class('btn btn-danger btn-sm')
+                   ->href(function($model) {
+                       return route(sprintf('admin.%s.destroy', $this->route()), $model->id);
+                   }),
+           ]),
         ];
     }
-
+    public function route(){
+        return "DummyRoute";
+    }
 }

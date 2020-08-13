@@ -10,8 +10,9 @@ use Call\Commands\AbstractCommand;
 
 class MakeForm extends AbstractCommand
 {
-    protected $signature = 'make:form {name} {--model=Model}';
+    protected $signature = 'makeApp:form {name} {--model=Model}';
     protected $description = 'Make a new Laravel Livewire form component.';
+    protected $type="Form";
 
     protected function getStub()
     {

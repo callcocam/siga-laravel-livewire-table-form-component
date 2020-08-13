@@ -22,7 +22,7 @@ class FormServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../../routes/form.php');
 
         $this->publishes([__DIR__ . '/../../config/lw-forms.php' => config_path('lw-forms.php')], 'form-config');
-        $this->publishes([__DIR__ . '/../../resources/views' => resource_path('views/vendor/lw-forms')], 'form-views');
+        $this->publishes([__DIR__ . '/../../resources/views' => resource_path('views/ivewire/vendor/lw-forms')], 'form-views');
     }
 
     public function register()

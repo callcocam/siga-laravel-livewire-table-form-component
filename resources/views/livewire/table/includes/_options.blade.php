@@ -1,5 +1,5 @@
 @if ($paginationEnabled || $searchEnabled)
-    <div class="row mb-4">
+    <div class="row m-4 ">
         @if ($paginationEnabled && $perPageEnabled)
             <div class="col form-inline">
                 {{ $perPageLabel }}: &nbsp;
@@ -19,7 +19,7 @@
         @endif
 
         @if ($searchEnabled)
-            <div class="col">
+            <div class="col-md">
                 <input
                     @if (is_numeric($searchDebounce)) wire:model.debounce.{{ $searchDebounce }}ms="search" @endif
                 @if ($disableSearchOnLoading) wire:loading.attr="disabled" @endif

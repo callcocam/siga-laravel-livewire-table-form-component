@@ -1,0 +1,14 @@
+<?php
+Route::group([
+    'prefix'=>'admin'
+], function(){
+    Route::group([
+        'middleware'=>'auth'
+    ], function(){
+        Route::livewire('/DummyRoutes', 'admin.DummyRoutes.DummyRoute-table')->name('admin.DummyRoutes.index');
+        Route::livewire('/DummyRoutes/create', 'admin.DummyRoutes.DummyRoute-form')->name('admin.DummyRoutes.create');
+        Route::livewire('/DummyRoutes/{model}/edit', 'admin.DummyRoutes.DummyRoute-form')->name('admin.DummyRoutes.edit');
+        Route::livewire('/DummyRoutes/{model}/show', 'admin.DummyRoutes.DummyRoutes-form')->name('admin.DummyRoutes.show');
+        Route::livewire('/DummyRoutes/{model}/destroy', 'admin.DummyRoutes.DummyRoutes-form')->name('admin.DummyRoutes.destroy');
+    });
+});

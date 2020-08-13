@@ -7,10 +7,14 @@
 namespace Call\LaravelLivewireTables;
 
 
-use Call\LaravelLivewireTables\Traits\{Foreign,Checkboxes,
+use Call\LivewireAlert\Traits\LivewireAlert;
+use Call\LaravelLivewireTables\Traits\{Foreign,
+    Checkboxes,
+    Kill,
     Loading,
     Offline,
     Pagination,
+    WithParameters,
     Search,
     Sorting,
     Table};
@@ -29,8 +33,11 @@ abstract class TableComponent extends Component
         Search,
         Sorting,
         Table,
+        WithParameters,
         WithPagination,
-        Foreign;
+        Foreign,
+        LivewireAlert,
+        Kill;
 
     /**
      * The classes applied to the wrapper div.
@@ -38,6 +45,13 @@ abstract class TableComponent extends Component
      * @var string
      */
     public $wrapperClass = '';
+
+    /**
+     * The default message delete.
+     *
+     * @var string
+     */
+    protected $messagesDelete="Record deleted successfully :)";
 
     /**
      * Whether or not to refresh the table at a certain interval
@@ -80,6 +94,8 @@ abstract class TableComponent extends Component
      */
     abstract public function query(): Builder;
 
+    abstract public function route();
+
     /**
      * @return mixed
      */
@@ -116,7 +132,6 @@ abstract class TableComponent extends Component
     public function models(): Builder
     {
         $builder = $this->query();
-
         if ($this->searchEnabled && trim($this->search) !== '') {
             $builder->where(function (Builder $builder) {
                 foreach ($this->columns() as $column) {

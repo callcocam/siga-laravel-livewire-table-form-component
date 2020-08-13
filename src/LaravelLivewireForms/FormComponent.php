@@ -6,37 +6,36 @@
  */
 namespace Call\LaravelLivewireForms;
 
-
 use Call\LaravelLivewireForms\Traits\FollowsRules;
 use Call\LaravelLivewireForms\Traits\HandlesArrays;
 use Call\LaravelLivewireForms\Traits\UploadsFiles;
+use Call\LaravelLivewireTables\Traits\WithParameters;
+use Call\LivewireAlert\Traits\LivewireAlert;
 use Illuminate\Support\Arr;
 use Livewire\Component;
 
 abstract class FormComponent extends Component
 {
-    use FollowsRules, UploadsFiles, HandlesArrays;
-
+    use FollowsRules, UploadsFiles, HandlesArrays, WithParameters, LivewireAlert;
     protected $prefix = "admin";
+    protected $messagesCreate="Record created successfully :)!!";
+    protected $messagesUpdate="Record updated successfully :)";
+    protected $messagesDelete="Record deleted successfully :)";
+    protected $messages;
     protected $model;
-    public $route;
     public $form_data;
     private static $storage_disk;
     private static $storage_path;
 
     protected $listeners = ['fileUpdate'];
 
-    public function mount($model = null)
-    {
-        $this->setFormProperties($model);
-    }
 
     public function setFormProperties($model = null)
     {
 
         if ($model){
-            $model = $this->query()->find($model);
-            $this->form_data = $model->toArray();
+            $this->model = $model;
+            $this->form_data = $this->model->toArray();
         }
 
         foreach ($this->fields() as $field) {
@@ -64,7 +63,7 @@ abstract class FormComponent extends Component
         return "lw-forms::form-component";
     }
 
-   abstract public function fields();
+    abstract public function fields();
 
     public function updated($field)
     {
@@ -75,7 +74,7 @@ abstract class FormComponent extends Component
     {
         $this->validate($this->rules());
 
-       $this->getFormData();
+        $this->getFormData();
 
         $this->success();
     }
@@ -89,10 +88,11 @@ abstract class FormComponent extends Component
     {
 
         if(isset($this->form_data['id']) && $this->form_data['id']){
-         return $this->query()->update($this->form_data);
+            $this->alert('success', $this->messagesUpdate);
+            return $this->query()->where('id',$this->form_data['id'])->update($this->form_data);
         }
         else{
-
+            $this->alert('success', $this->messagesCreate);
             return $this->query()->create($this->form_data);
         }
 
@@ -104,70 +104,94 @@ abstract class FormComponent extends Component
         $this->saveAndStayResponse();
     }
 
-    public function saveAndStayResponse()
+    public function GoBack()
     {
-        if($this->route)
-            return redirect()->route(sprintf('admin.%s.create', $this->route));
+        return redirect()->route(sprintf('admin.%s.index', $this->route()),$this->getUpdatesQueryParametersClean());
+    }
 
+
+    public function GoBackEdit()
+    {
         return redirect()->back();
     }
 
+
+    public function GoBackCreate()
+    {
+        return redirect()->route(sprintf('admin.%s.create', $this->route()));
+    }
+
+    /**
+     * Save and create new register
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveAndStayResponse()
+    {
+        $this->submit();
+        return $this->GoBackCreate();
+    }
+
+    /**
+     * Save and back index
+     */
     public function saveAndGoBack()
     {
         $this->submit();
-        $this->saveAndGoBackResponse();
+
+        $this->GoBack();
     }
 
+    /**
+     * Save and edit response
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function saveAndGoBackResponse()
     {
-        if($this->route)
-            return redirect()->route($this->getRoute());
-
-        return redirect()->back();
+        $this->submit();
+        return $this->GoBackEdit();
     }
+
+
+   abstract public function route();
 
     public function query()
     {
-        if(is_string($this->model) || is_null($this->model)){
+        if(is_null($this->model)){
+           return null;
+        }
+
+        if(is_string($this->model)){
             $this->model = app($this->model())->query();
         }
         return $this->model;
     }
 
-    /**
-     * @param string $action
-     * @return mixed
-     */
-    public function getRoute($action="index")
-    {
-        if($this->prefix){
-            return sprintf('%s.%s.%s',$this->prefix, $this->route, $action);
-        }
-        return sprintf('%s.%s',$this->route, $action);
-    }
 
     public function model(){
 
         return null;
     }
+
     public function social_login()
     {
         return [];
     }
+
     public function getFormData(){
         $field_names = [];
         foreach ($this->fields() as $field) $field_names[] = $field->name;
         $this->form_data = Arr::only($this->form_data, $field_names);
     }
+
     public function getFormDataKey($key){
 
-           if(!$this->form_data)
-               $this->getFormData();
+        if(!$this->form_data)
+            $this->getFormData();
 
-           if(isset($this->form_data[$key]))
-               return $this->form_data[$key];
+        if(isset($this->form_data[$key]))
+            return $this->form_data[$key];
 
-           return null;
+        return null;
     }
 
     public function filled($key)

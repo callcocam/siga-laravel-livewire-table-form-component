@@ -61,7 +61,7 @@ trait ResetsPasswords
     /**
      * Reset the given user's password.
      */
-    public function reset()
+    public function resetUser()
     {
         $this->getFormData();
 

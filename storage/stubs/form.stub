@@ -23,5 +23,8 @@ class DummyComponent extends FormComponent
             FieldComponent::make('Name')->input()->rules('required'),
         ];
     }
+    public function route(){
+        return "DummyRoute";
+    }
 
 }

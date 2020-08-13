@@ -3,9 +3,11 @@
 
 namespace Call\LaravelLivewireTables\Views;
 
+use Call\LaravelLivewireTables\Traits\WithParameters;
 
 class Link extends Component
 {
+    use WithParameters;
     /**
      * Link constructor.
      *
@@ -74,6 +76,40 @@ class Link extends Component
      * @return $this
      */
     public function href($href): self
+    {
+        return $this->setAttribute('href', $href);
+    }
+
+    /**
+     * @param $model
+     *
+     * @return $this
+     */
+    public function destroy($route): self
+    {
+        return $this->href(function($model) use($route) {
+            return route(sprintf('admin.%s.destroy', $route), $this->getUpdatesQueryParameters($model));
+        });
+    }
+
+    /**
+     * @param $model
+     *
+     * @return $this
+     */
+    public function edit($route): self
+    {
+        return $this->href(function($model) use ($route) {
+            return route(sprintf('admin.%s.edit', $route), $this->getUpdatesQueryParameters($model));
+        });
+    }
+
+    /**
+     * @param $href
+     *
+     * @return $this
+     */
+    public function show($href): self
     {
         return $this->setAttribute('href', $href);
     }

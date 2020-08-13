@@ -1,5 +1,5 @@
 @if ($paginationEnabled)
-    <div class="row">
+    <div class="row m-3">
         <div class="col">
             {{ $models->links() }}
         </div>
