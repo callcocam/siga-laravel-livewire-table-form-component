@@ -20,7 +20,6 @@ abstract class FormComponent extends Component
     protected $prefix = "admin";
     protected $messagesCreate="Record created successfully :)!!";
     protected $messagesUpdate="Record updated successfully :)";
-    protected $messagesDelete="Record deleted successfully :)";
     protected $messages;
     protected $model;
     public $form_data;
@@ -89,11 +88,11 @@ abstract class FormComponent extends Component
 
         if(isset($this->form_data['id']) && $this->form_data['id']){
             $this->alert('success', $this->messagesUpdate);
-            return $this->query()->where('id',$this->form_data['id'])->update($this->form_data);
+            $this->query()->where('id',$this->form_data['id'])->update($this->form_data);
         }
         else{
             $this->alert('success', $this->messagesCreate);
-            return $this->query()->create($this->form_data);
+            $this->query()->create($this->form_data);
         }
 
     }
