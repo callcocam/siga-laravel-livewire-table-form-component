@@ -55,4 +55,13 @@ class FieldComponent extends AbstractField
         $this->array_sortable = true;
         return $this;
     }
+
+    public function render(){
+
+        if($this->view)
+          return view($this->view)->with('field', $this)->render();
+
+          return view(sprintf('lw-forms::fields.%s', $this->type))->with('field', $this)->render();
+
+    }
 }
