@@ -17,6 +17,7 @@ use Livewire\Component;
 abstract class FormComponent extends Component
 {
     use FollowsRules, UploadsFiles, HandlesArrays, WithParameters, LivewireAlert;
+    protected $result = false;
     protected $prefix = "admin";
     protected $messagesCreate="Record created successfully :)!!";
     protected $messagesUpdate="Record updated successfully :)";
@@ -57,6 +58,11 @@ abstract class FormComponent extends Component
         ]);
     }
 
+    public function getId(){
+
+        return $this->getFormDataKey('id');
+
+    }
     public function formTemplate()
     {
         return "lw-forms::form-component";
@@ -85,14 +91,31 @@ abstract class FormComponent extends Component
 
     public function success()
     {
-
         if(isset($this->form_data['id']) && $this->form_data['id']){
-            $this->alert('success', $this->messagesUpdate);
-            $this->query()->where('id',$this->form_data['id'])->update($this->form_data);
+            try{
+                foreach ($this->query()->getModel()->getFillable() as $field) $field_names[$field] = $this->form_data[$field];
+                $this->model = $this->query()->where('id',$this->form_data['id'])->first();
+                $this->model->update($field_names);
+                $this->result = true;
+                $this->alert('success', $this->messagesUpdate);
+            }
+            catch (\PDOException $PDOException){
+                $this->result = false;
+                $this->alert('error', $PDOException->getMessage());
+            }
         }
         else{
-            $this->alert('success', $this->messagesCreate);
-            $this->query()->create($this->form_data);
+            try{
+                foreach ($this->query()->getModel()->getFillable() as $field) $field_names[$field] = $this->form_data[$field];
+                $this->model = $this->query()->create($field_names);
+                $this->result = true;
+                $this->alert('success', $this->messagesCreate);
+            }
+            catch (\PDOException $PDOException){
+                $this->result = false;
+                $this->alert('error', $PDOException->getMessage());
+            }
+
         }
 
     }

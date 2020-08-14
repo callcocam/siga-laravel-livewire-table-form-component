@@ -8,6 +8,7 @@ namespace DummyNameSpace;
 
 use App\DummyModel;
 use Call\LaravelLivewireTables\Views\Delete;
+use Call\LaravelLivewireTables\Views\Link;
 use Illuminate\Database\Eloquent\Builder;
 use Call\LaravelLivewireTables\Views\Column;
 use Call\LaravelLivewireTables\TableComponent;

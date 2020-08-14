@@ -22,7 +22,10 @@ trait LivewireAlert
             'title' =>  '',
             'text' => null,
             'showCancelButton' => false,
-            'showConfirmButton' => false
+            'showConfirmButton' => false,
+            'onClose' => "() => {
+                  console.log('close')
+            }"
         ]);
     }
 
@@ -41,6 +44,7 @@ trait LivewireAlert
         string $message,
         array $options = []
     ) {
+        session()->flash('message', $message);
         $this->emit(
             $event,
             $this->alertOptions()

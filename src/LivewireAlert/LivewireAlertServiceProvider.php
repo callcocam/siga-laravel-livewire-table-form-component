@@ -22,35 +22,7 @@ class LivewireAlertServiceProvider extends ServiceProvider
     public function register()
     {
         Blade::directive('livewireAlertScripts', function () {
-            return <<<'HTML'
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-                <script>
-                    window.livewire.on('success', options => {
-                        Swal.fire({
-                            ...options,
-                            icon: 'success'
-                        });
-                    });
-                    window.livewire.on('warning', options => {
-                        Swal.fire({
-                            ...options,
-                            icon: 'warning'
-                        });
-                    });
-                    window.livewire.on('info', options => {
-                        Swal.fire({
-                            ...options,
-                            icon: 'info'
-                        });
-                    });
-                    window.livewire.on('error', options => {
-                        Swal.fire({
-                            ...options,
-                            icon: 'error'
-                        });
-                    });
-                </script>
-HTML;
+            return view('livewire.livewire-alert');
         });
 
         // Automatically apply the package configuration

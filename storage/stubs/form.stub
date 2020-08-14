@@ -17,6 +17,13 @@ class DummyComponent extends FormComponent
         return DummyModel::query();
     }
 
+
+    public function mount(DummyModel $model)
+    {
+
+        $this->setFormProperties($model);
+    }
+
     public function fields()
     {
         return [
