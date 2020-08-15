@@ -1,4 +1,4 @@
 <?php
 return [
-    'routes'=>false
+    'routes'=>true
 ];

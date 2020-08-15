@@ -26,7 +26,8 @@ class CallServiceProvider extends ServiceProviderAlias
 
     public function boot(){
 
-        if(config('call.routes', false)){
+        $this->mergeConfigFrom(__DIR__ . '/../../config/call.php', 'lw-call');
+        if(config('lw-call.routes', false)){
 
             $this->mapWebRoutes();
             $this->mapDynamicWebRoutes();
