@@ -11,6 +11,8 @@ trait Label
 
     protected $class_label = "";
 
+    public $label = "";
+
     /**
      * @return bool
      */

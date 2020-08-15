@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 class FieldComponent extends AbstractField
 {
     protected $rendered = false;
-    protected $label;
     protected $key;
     protected $file_multiple;
     protected $array_fields = [];

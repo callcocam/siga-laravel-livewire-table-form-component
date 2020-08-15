@@ -12,13 +12,14 @@ use Call\LaravelLivewireForms\Fields\Traits\Divider;
 use Call\LaravelLivewireForms\Fields\Traits\Icon;
 use Call\LaravelLivewireForms\Fields\Traits\Label;
 use Call\LaravelLivewireForms\Fields\Traits\Radio;
+use Call\LaravelLivewireForms\Fields\Traits\Row;
 use Call\LaravelLivewireForms\Fields\Traits\Select;
 use Call\LaravelLivewireForms\Fields\Traits\TextArea;
 use Illuminate\Support\Arr;
 
 abstract class AbstractField
 {
-    use CheckBox, Icon, Label, Radio, Select, TextArea, Divider;
+    use CheckBox, Icon, Label, Radio, Select, TextArea, Divider, Row;
     protected $name;
     protected $type;
     protected $input_type;
