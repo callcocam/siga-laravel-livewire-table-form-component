@@ -77,6 +77,6 @@ class Cover extends Component
      */
     public function view(): string
     {
-        return 'lw-tables::components.cover';
+        return table_views('components.cover');
     }
 }

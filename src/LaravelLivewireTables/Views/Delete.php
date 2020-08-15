@@ -86,6 +86,6 @@ class Delete extends Component
      */
     public function view(): string
     {
-        return 'lw-tables::components.button-delete';
+        return table_views('components.button-delete');
     }
 }

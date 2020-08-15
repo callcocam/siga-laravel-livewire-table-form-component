@@ -76,6 +76,6 @@ class Button extends Component
      */
     public function view(): string
     {
-        return 'lw-tables::components.button';
+        return table_views('components.button');
     }
 }

@@ -21,12 +21,12 @@ class FormServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . config('lw-forms-config.load-views','/../../resources/views/livewire/form'), 'lw-forms-views');
         $this->loadRoutesFrom(__DIR__ . '/../../routes/form.php');
 
-        $this->publishes([__DIR__ . '/../../config/lw-forms.php' => config_path('lw-forms.php')], 'lw-forms-config');
+        $this->publishes([__DIR__ . '/../../config/lw-forms-config.php' => config_path('lw-forms-config.php')], 'lw-forms-config');
         $this->publishes([__DIR__ . '/../../resources/views/livewire/form' => resource_path('views/livewire/vendor/lw-forms')], 'lw-forms-views');
     }
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/lw-forms.php', 'lw-forms-config');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/lw-forms-config.php', 'lw-forms-config');
     }
 }

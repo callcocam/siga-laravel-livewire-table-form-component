@@ -18,7 +18,7 @@ trait AuthenticatesUsers
 
     public function formTemplate()
     {
-        return "lw-forms::auth.login";
+        return form_views("auth.login");
     }
 
     public function saveAndStayResponse()

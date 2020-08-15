@@ -27,7 +27,7 @@ trait ResetsPasswords
     }
     public function formTemplate()
     {
-        return "lw-forms::auth.passwords.reset";
+        return form_views("auth.passwords.reset");
     }
 
     public function saveAndStayResponse()

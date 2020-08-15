@@ -16,7 +16,7 @@ trait SendsPasswordResetEmails
 
     public function formTemplate()
     {
-        return "lw-forms::auth.passwords.email";
+        return form_views("auth.passwords.email");
     }
 
     public function saveAndStayResponse()

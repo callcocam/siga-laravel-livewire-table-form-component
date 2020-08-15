@@ -11,8 +11,8 @@ trait UploadsFiles
 {
     public static function fileUpload()
     {
-        $storage_disk = self::$storage_disk ?? config('lw-forms.storage_disk');
-        $storage_path = self::$storage_path ?? config('lw-forms.storage_path');
+        $storage_disk = self::$storage_disk ?? config('lw-forms-config.storage_disk');
+        $storage_path = self::$storage_path ?? config('lw-forms-config.storage_path');
         $files = [];
 
         foreach (request()->file('files') as $file) {

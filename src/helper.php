@@ -10,7 +10,7 @@ if(!function_exists('form_row')){
 if(!function_exists('table_views')){
 
     function table_views($view){
-        return sprintf("lw-forms-views::%s", $view);
+        return sprintf("lw-tables-views::%s", $view);
     }
 }
 if(!function_exists('table_views_includes')){

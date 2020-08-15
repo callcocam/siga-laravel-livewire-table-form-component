@@ -23,7 +23,7 @@ trait RegistersUsers
     }
     public function formTemplate()
     {
-        return "lw-forms::auth.register";
+        return form_views("auth.register");
     }
 
     public function saveAndStayResponse()

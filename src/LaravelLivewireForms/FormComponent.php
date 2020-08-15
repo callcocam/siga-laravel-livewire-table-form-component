@@ -68,7 +68,7 @@ abstract class FormComponent extends Component
     }
     public function formTemplate()
     {
-        return "lw-forms-views::form-component";
+        return form_views(":form-component");
     }
 
     abstract public function fields();

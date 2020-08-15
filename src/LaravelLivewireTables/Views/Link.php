@@ -119,6 +119,6 @@ class Link extends Component
      */
     public function view(): string
     {
-        return 'lw-tables::components.link';
+        return table_views('components.link');
     }
 }

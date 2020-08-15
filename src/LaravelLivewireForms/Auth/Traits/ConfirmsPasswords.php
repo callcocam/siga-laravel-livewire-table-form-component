@@ -15,15 +15,6 @@ trait ConfirmsPasswords
 {
     use RedirectsUsers;
 
-    /**
-     * Display the password confirmation view.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function showConfirmForm()
-    {
-        return view('auth.passwords.confirm');
-    }
 
     /**
      * Confirm the given user's password.
