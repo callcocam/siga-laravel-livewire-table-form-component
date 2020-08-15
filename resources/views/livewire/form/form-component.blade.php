@@ -35,4 +35,4 @@
         </div>
     </div>
 </div>
-@include('lw::livewire.form.scripts')
+@include('lw-forms::scripts')
