@@ -1,6 +1,6 @@
 <div class="form-group row">
     @if($field->isShowLabel())
-        <div class="col-md-{{ $field->coll }} col-form-label text-md-right">
+        <div class="col-md{{ $field->coll ? '-' . $field->coll : '' }} col-form-label text-md-right">
             {{ __($field->label) }}
         </div>
     @endif
