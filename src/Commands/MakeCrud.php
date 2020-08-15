@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 class MakeCrud extends Command
 {
 
-    protected $signature = 'make:crud {name} {--model=Model}';
+    protected $signature = 'make:crud {name} {--model=Model} {--default=1}';
     protected $description = 'Make a new Laravel Crud Livewire component.';
 
     public function handle()
@@ -23,16 +23,18 @@ class MakeCrud extends Command
         $this->call('makeApp:form',$arguments);
         $this->call('makeApp:table',$arguments);
         $this->call('makeApp:route',$arguments);
-
-        if (!File::exists(app_path("%s.php", $this->option('model')))) {
-            $this->call('make:model',[
-                'name' => $this->option('model'),
-                '-m' => true
-            ]);
-            $this->call('make:factory',[
-                'name' => sprintf("%sFactory",$this->option('model')),
-                '--model' => $this->option('model')
-            ]);
+        if($this->option('default')){
+            if (!File::exists(app_path("%s.php", $this->option('model')))) {
+                $this->call('make:model',[
+                    'name' => $this->option('model'),
+                    '-m' => true
+                ]);
+                $this->call('make:factory',[
+                    'name' => sprintf("%sFactory",$this->option('model')),
+                    '--model' => $this->option('model')
+                ]);
+            }
         }
+
     }
 }

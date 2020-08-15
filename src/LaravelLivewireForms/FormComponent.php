@@ -6,6 +6,7 @@
  */
 namespace Call\LaravelLivewireForms;
 
+use Call\LaravelLivewireForms\Fields\Component\FieldComponent;
 use Call\LaravelLivewireForms\Traits\FollowsRules;
 use Call\LaravelLivewireForms\Traits\HandlesArrays;
 use Call\LaravelLivewireForms\Traits\UploadsFiles;
@@ -17,12 +18,14 @@ use Livewire\Component;
 abstract class FormComponent extends Component
 {
     use FollowsRules, UploadsFiles, HandlesArrays, WithParameters, LivewireAlert;
+    protected $test = false;
     protected $result = false;
     protected $prefix = "admin";
     protected $messagesCreate="Record created successfully :)!!";
     protected $messagesUpdate="Record updated successfully :)";
     protected $messages;
     protected $model;
+    public $form =[];
     public $form_data;
     private static $storage_disk;
     private static $storage_path;
@@ -227,6 +230,29 @@ abstract class FormComponent extends Component
         }
 
         return true;
+    }
+
+    public function fieldsAdd($fields =[]){
+
+        if($fields):
+            foreach ($fields as $field):
+                 $this->fieldAdd($field);
+            endforeach;;
+
+        endif;
+
+        return $this;
+    }
+    public function fieldAdd(FieldComponent $filed){
+
+        if($this->test):
+            if(!$filed->default)
+               $filed->default($filed->label);
+        endif;
+
+        $this->form[$filed->name] = $filed;
+
+        return $this;
     }
 
 }

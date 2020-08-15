@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 
 class FieldComponent extends AbstractField
 {
+    protected $rendered = false;
     protected $label;
     protected $key;
     protected $file_multiple;
@@ -56,8 +57,9 @@ class FieldComponent extends AbstractField
         return $this;
     }
 
-    public function render(){
+    public function render($options=[]){
 
+        $this->rendered = true;
         if($this->view)
           return view($this->view)->with('field', $this)->render();
 
