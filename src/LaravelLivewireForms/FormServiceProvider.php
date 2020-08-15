@@ -18,7 +18,7 @@ class FormServiceProvider extends ServiceProvider
             $this->commands([MakeForm::class]);
         }
 
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/livewire/form', 'lw-forms');
+        $this->loadViewsFrom(__DIR__ . config('lw-forms-config.load-views','/../../resources/views/livewire/form'), 'lw-forms');
         $this->loadRoutesFrom(__DIR__ . '/../../routes/form.php');
 
         $this->publishes([__DIR__ . '/../../config/lw-forms.php' => config_path('lw-forms.php')], 'form-config');
@@ -27,6 +27,6 @@ class FormServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/lw-forms.php', 'lw-forms');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/lw-forms.php', 'lw-forms-config');
     }
 }

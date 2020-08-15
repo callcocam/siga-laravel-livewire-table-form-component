@@ -13,6 +13,13 @@ use Illuminate\Support\ServiceProvider;
 
 class TablesServiceProvider extends ServiceProvider
 {
+
+
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../../config/lw-tables.php', 'lw-tables-config');
+    }
+
     /**
      * Bootstrap the application services.
      */
@@ -21,7 +28,7 @@ class TablesServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([MakeTable::class]);
         }
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/livewire/table', 'lw-tables');
+        $this->loadViewsFrom(__DIR__.config('lw-tables-config.load-views','/../../resources/views/livewire/table'), 'lw-tables');
         $this->loadRoutesFrom(__DIR__ . '/../../routes/table.php');
 
         $this->publishes([__DIR__ . '/../../config/lw-tables.php' => config_path('lw-forms.php')], 'table-config');

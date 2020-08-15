@@ -11,6 +11,7 @@ trait Row
     public function openTag($tag="div")
     {
         $this->type = 'open-tag';
+        $this->class = 'row';
         $this->tag = $tag;
         return $this;
     }

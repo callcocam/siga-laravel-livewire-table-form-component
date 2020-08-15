@@ -15,13 +15,15 @@ use Call\LaravelLivewireForms\Fields\Traits\Radio;
 use Call\LaravelLivewireForms\Fields\Traits\Row;
 use Call\LaravelLivewireForms\Fields\Traits\Select;
 use Call\LaravelLivewireForms\Fields\Traits\TextArea;
+use Call\LaravelLivewireForms\Fields\Traits\WithAttributes;
 use Illuminate\Support\Arr;
 
 abstract class AbstractField
 {
-    use CheckBox, Icon, Label, Radio, Select, TextArea, Divider, Row;
+    use CheckBox, Icon, Label, Radio, Select, TextArea, Divider, Row,WithAttributes;
     protected $name;
     protected $type;
+    protected $class;
     protected $input_type;
     protected $options;
     protected $default;
@@ -47,6 +49,12 @@ abstract class AbstractField
     protected function options($options)
     {
         $this->options = Arr::isAssoc($options) ? array_flip($options) : array_combine($options, $options);
+    }
+
+    public function class($class)
+    {
+        $this->class = $class;
+        return $this;
     }
 
     public function default($default)
