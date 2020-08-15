@@ -25,8 +25,13 @@ class CallServiceProvider extends ServiceProviderAlias
     }
 
     public function boot(){
-        $this->mapWebRoutes();
-        $this->mapDynamicWebRoutes();
+
+        if(config('call.routes', false)){
+
+            $this->mapWebRoutes();
+            $this->mapDynamicWebRoutes();
+
+        }
         $this->loadPublishs();
         if ($this->app->runningInConsole()) {
             $this->commands([MakeCrud::class]);
