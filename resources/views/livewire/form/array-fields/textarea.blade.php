@@ -4,6 +4,5 @@
         class="form-control form-control-sm @error($field->key . '.' . $key . '.' . $array_field->name) is-invalid @enderror"
         placeholder="{{ $array_field->placeholder }}"
         wire:model.lazy="{{ $field->key . '.' . $key . '.' . $array_field->name }}"></textarea>
-
-    @include('lw-forms::array-fields.error-help')
+    @include(form_views_arrays('error-help'))
 </div>

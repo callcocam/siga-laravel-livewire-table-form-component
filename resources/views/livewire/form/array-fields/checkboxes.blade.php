@@ -13,6 +13,5 @@
             </label>
         </div>
     @endforeach
-
-    @include('lw-forms::array-fields.error-help')
+    @include(form_views_arrays('error-help'))
 </div>

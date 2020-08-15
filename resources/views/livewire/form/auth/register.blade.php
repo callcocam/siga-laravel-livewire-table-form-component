@@ -10,7 +10,7 @@
                                 @if($field->view)
                                     @include($field->view)
                                 @else
-                                    @include('lw-forms::fields.' . $field->type)
+                                    @include(form_views_fields($field->type))
                                 @endif
                             @endforeach
                             <div class="row">

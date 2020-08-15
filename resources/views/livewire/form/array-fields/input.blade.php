@@ -10,7 +10,6 @@
             autocomplete="{{ $array_field->autocomplete }}"
             placeholder="{{ $array_field->placeholder }}"
             wire:model.lazy="{{ $field->key . '.' . $key . '.' . $array_field->name }}">
-
-        @include('lw-forms::array-fields.error-help')
+        @include(form_views_arrays('error-help'))
     </div>
 @endif

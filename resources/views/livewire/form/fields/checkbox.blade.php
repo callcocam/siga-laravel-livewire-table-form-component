@@ -1,6 +1,5 @@
 <div class="form-group row">
-    @include('lw-forms::fields.label')
-
+    @include(form_views_fields('label'))
     <div class="col-md">
         <div class="form-check">
             <input
@@ -13,7 +12,6 @@
                 {{ $field->placeholder ?? $field->label }}
             </label>
         </div>
-
-        @include('lw-forms::fields.error-help')
+        @include(form_views_fields('error-help'))
     </div>
 </div>

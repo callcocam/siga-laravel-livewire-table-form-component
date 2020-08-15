@@ -1,5 +1,5 @@
 @if ($tableHeaderEnabled)
     <thead class="{{ $tableHeaderClass }}">
-    @include('lw-tables::includes._columns')
+    @include(table_views_includes('_columns'))
     </thead>
 @endif

@@ -9,6 +9,5 @@
             <option value="{{ $value }}">{{ $label }}</option>
         @endforeach
     </select>
-
-    @include('lw-forms::array-fields.error-help')
+    @include(form_views_arrays('error-help'))
 </div>

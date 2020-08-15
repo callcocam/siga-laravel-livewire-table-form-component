@@ -1,5 +1,5 @@
 @if($checkbox && $checkboxLocation === 'left')
-@include('laravel-livewire-tables::includes._checkbox-all')
+    @include(table_views_includes('_checkbox-all'))
 @endif
 
 @foreach($columns as $column)
@@ -29,5 +29,5 @@ id="{{ $this->setTableHeadId($column->attribute) }}"
 @endforeach
 
 @if($checkbox && $checkboxLocation === 'right')
-    @include('laravel-livewire-tables::includes._checkbox-all')
+    @include(table_views_includes('_checkbox-all'))
 @endif

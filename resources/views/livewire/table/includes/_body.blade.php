@@ -12,7 +12,7 @@
         @endforeach
         >
         @if($checkbox && $checkboxLocation === 'left')
-            @include('lw-tables::includes._checkbox-row')
+            @include(table_views_includes('_checkbox-row'))
         @endif
 
         @foreach($columns as $column){{-- Open foreach column --}}
@@ -61,7 +61,7 @@
             </td>
         @endforeach {{-- Close foreach column  --}}
         @if($checkbox && $checkboxLocation === 'right')
-        @include('lw-tables::includes._checkbox-row')
+        @include(table_views_includes('_checkbox-row'))
         @endif
         </tr>
     @endforeach{{-- Close foreach row --}}

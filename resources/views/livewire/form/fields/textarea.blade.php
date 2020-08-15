@@ -1,5 +1,5 @@
 <div class="form-group row">
-    @include('lw-forms::fields.label')
+    @include(form_views_fields('label'))
     <div class="col-md">
         <textarea
             id="{{ $field->name }}"
@@ -7,7 +7,6 @@
             class="form-control @error($field->key) is-invalid @enderror"
             placeholder="{{ $field->placeholder }}"
             wire:model.lazy="{{ $field->key }}"></textarea>
-
-        @include('lw-forms::fields.error-help')
+        @include(form_views_fields('error-help'))
     </div>
 </div>

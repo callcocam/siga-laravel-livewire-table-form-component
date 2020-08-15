@@ -1,5 +1,5 @@
 <div class="form-group row">
-    @include('lw-forms::fields.label')
+    @include(form_views_fields('label'))
     <div class="col-md">
         <input
             id="{{ $field->name }}"
@@ -8,6 +8,6 @@
             autocomplete="{{ $field->autocomplete }}"
             placeholder="{{ $field->placeholder }}"
             wire:model.lazy="{{ $field->key }}">
-        @include('lw-forms::fields.error-help')
+        @include(form_views_fields('error-help'))
     </div>
 </div>

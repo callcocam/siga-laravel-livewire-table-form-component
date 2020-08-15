@@ -106,7 +106,7 @@ abstract class TableComponent extends Component
      */
     public function view(): string
     {
-        return 'lw-tables::table-component';
+        return 'lw-tables-views::table-component';
     }
 
     /**

@@ -22,24 +22,23 @@
                                     @else
                                         <div class="{{ $wrapperClass }}">
                                             @endif
-                                            @include('lw-tables::includes._offline')
-                                            @include('lw-tables::includes._options')
-                                            @include('lw-tables::includes._loading')
-
+                                            @include(table_views_includes('_offline'))
+                                            @include(table_views_includes('_options'))
+                                            @include(table_views_includes('_loading'))
                                             @if (is_string($responsive))
                                                 <div class="{{ $responsive }}">
                                                     @endif
 
                                                     <table class="{{ $tableClass }}">
-                                                        @include('lw-tables::includes._header')
-                                                        @include('lw-tables::includes._body')
-                                                        @include('lw-tables::includes._footer')
+                                                        @include(table_views_includes('_header'))
+                                                        @include(table_views_includes('_body'))
+                                                        @include(table_views_includes('_footer'))
                                                     </table>
 
                                                     @if (is_string($responsive))
                                                 </div>
                                             @endif
-                                            @include('lw-tables::includes._pagination')
+                                            @include(table_views_includes('_pagination'))
                                             @if (is_numeric($refresh))
                                         </div>
                                         @elseif (is_string($refresh))
