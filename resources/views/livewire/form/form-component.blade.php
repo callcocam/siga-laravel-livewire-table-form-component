@@ -15,7 +15,7 @@
                             </div>
                             @foreach($fields as $field)
                                 @if($field->view)
-                                    @include($field->view)
+                                    @include(form_views($field->view))
                                 @else
                                     @include(form_views_fields($field->type))
                                 @endif
