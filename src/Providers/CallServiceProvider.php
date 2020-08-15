@@ -33,7 +33,7 @@ class CallServiceProvider extends ServiceProviderAlias
             $this->mapDynamicWebRoutes();
 
         }
-        $this->loadPublishs();
+        $this->loadPublish();
         if ($this->app->runningInConsole()) {
             $this->commands([MakeCrud::class]);
             $this->commands([MakeRoue::class]);
@@ -59,19 +59,19 @@ class CallServiceProvider extends ServiceProviderAlias
     }
 
 
-    protected function loadPublishs(){
+    protected function loadPublish(){
 
         $this->publishes([
-            __DIR__.'/../../config/call.php' => config_path('call.php'),
+            __DIR__.'/../../config/call.php' => config_path('call.php'), 'lw-call',
         ]);
 
         $this->publishes([
-            __DIR__.'/../../resources' => resource_path(),
-        ]);
+            __DIR__.'/../../resources' => resource_path()
+        ],'lw-call-views');
 
         $this->publishes([
-            __DIR__.'/../../package.json' => base_path('package.json'),
-        ]);
+            __DIR__.'/../../package.json' => base_path('package.json')
+        ],'lv-call-package');
 
     }
 }
