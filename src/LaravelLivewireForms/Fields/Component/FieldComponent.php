@@ -26,7 +26,7 @@ class FieldComponent extends AbstractField
         $this->key = 'form_data.' . $this->name;
     }
 
-    public static function make($label, $name = null)
+    public static function make($label=null, $name = null)
     {
         return new static($label, $name);
     }
