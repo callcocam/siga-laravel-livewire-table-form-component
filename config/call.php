@@ -1,4 +1,4 @@
 <?php
 return [
-    'routes'=>true
+    'routes'=>env('APP_CALL_ROUTES',false)
 ];
