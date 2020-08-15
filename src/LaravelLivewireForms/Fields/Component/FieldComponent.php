@@ -9,6 +9,7 @@ namespace Call\LaravelLivewireForms\Fields\Component;
 
 use Call\LaravelLivewireForms\Fields\AbstractField;
 use Illuminate\Support\Str;
+use Ramsey\Uuid\Uuid;
 
 class FieldComponent extends AbstractField
 {
@@ -28,6 +29,8 @@ class FieldComponent extends AbstractField
 
     public static function make($label=null, $name = null)
     {
+        if(is_null($label))
+            $label = Uuid::uuid4();
         return new static($label, $name);
     }
 
@@ -60,9 +63,9 @@ class FieldComponent extends AbstractField
 
         $this->rendered = true;
         if($this->view)
-          return view($this->view)->with('field', $this)->render();
+            return view($this->view)->with('field', $this)->render();
 
-          return view(form_views_fields( $this->type))->with('field', $this)->render();
+        return view(form_views_fields( $this->type))->with('field', $this)->render();
 
     }
 }
