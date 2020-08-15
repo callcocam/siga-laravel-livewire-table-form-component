@@ -15,4 +15,9 @@ trait Divider
         $this->label = $text;
         return $this;
     }
+
+    public function isDivider(){
+
+        return $this->type === 'divider';
+    }
 }

@@ -204,7 +204,11 @@ abstract class FormComponent extends Component
 
     public function getFormData(){
         $field_names = [];
-        foreach ($this->fields() as $field) $field_names[] = $field->name;
+        foreach ($this->fields() as $field) {
+            if(!$field->isDivider()){
+                $field_names[] = $field->name;
+            }
+        }
         $this->form_data = Arr::only($this->form_data, $field_names);
     }
 
