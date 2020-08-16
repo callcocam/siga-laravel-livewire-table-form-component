@@ -37,25 +37,10 @@ trait ResetsPasswords
     public function fields()
     {
         return [
-            FieldComponent::make('Email')->input('email')->rules(['required', 'string', 'email', 'max:255']),
-            FieldComponent::make('Password')->input('password')->rules(['required', 'string', 'min:8', 'confirmed']),
-            FieldComponent::make('Confirm Password', 'password_confirmation')->input('password'),
+            FieldComponent::make('Email')->input('email')->rules(['required', 'string', 'email', 'max:255'])->setIsShowLabel(),
+            FieldComponent::make('Password')->input('password')->rules(['required', 'string', 'min:8', 'confirmed'])->setIsShowLabel(),
+            FieldComponent::make('Confirm Password', 'password_confirmation')->input('password')->setIsShowLabel(),
         ];
-    }
-    /**
-     * Display the password reset view for the given token.
-     *
-     * If no token is present, display the link request form.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string|null  $token
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showResetForm(Request $request, $token = null)
-    {
-        return view('auth.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
-        );
     }
 
     /**
@@ -79,9 +64,7 @@ trait ResetsPasswords
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
-        return $response == Password::PASSWORD_RESET
-            ? $this->sendResetResponse( $response)
-            : $this->sendResetFailedResponse( $response);
+        return $this->saveAndStayResponse();
     }
 
 
