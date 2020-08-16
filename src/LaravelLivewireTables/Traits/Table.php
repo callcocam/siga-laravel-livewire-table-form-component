@@ -56,7 +56,6 @@ trait Table
      */
     public $responsive = 'table-responsive';
 
-
     /**
      *
      * @return string|null

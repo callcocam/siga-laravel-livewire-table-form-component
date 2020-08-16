@@ -9,6 +9,7 @@ namespace Call\Providers;
 use Call\Commands\MakeCrud;
 use Call\Commands\MakeRoue;
 use Call\LaravelLivewireTables\TablesServiceProvider;
+use Call\LavewireNotify\NotifyServiceProvider;
 use Call\LivewireAlert\LivewireAlertServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as ServiceProviderAlias;
@@ -21,6 +22,7 @@ class CallServiceProvider extends ServiceProviderAlias
     {
         $this->app->register(FormServiceProvider::class);
         $this->app->register(TablesServiceProvider::class);
+        $this->app->register(NotifyServiceProvider::class);
         $this->app->register(LivewireAlertServiceProvider::class);
     }
 

@@ -22,10 +22,7 @@ trait LivewireAlert
             'title' =>  '',
             'text' => null,
             'showCancelButton' => false,
-            'showConfirmButton' => false,
-            'onClose' => "() => {
-                  console.log('close')
-            }"
+            'showConfirmButton' => false
         ]);
     }
 
@@ -45,56 +42,45 @@ trait LivewireAlert
         array $options = []
     ) {
         session()->flash('message', $message);
-        $this->emit(
-            $event,
-            $this->alertOptions()
-                ->merge($options)
-                ->put('title', $message)
-                ->toArray()
-        );
     }
 
     /**
      * Alert Success event.
      *
-     * @param  array  $options - User-defined SweetAlert2 options
-     * @return array  $options
+     * @param  string  $message
      */
-    public function success(array $options)
+    public function success($message)
     {
-        return $options;
+        session()->flash('success', $message);
     }
 
     /**
      * Alert Warning event.
      *
-     * @param  array  $options - User-defined SweetAlert2 options
-     * @return array  $options
+     * @param  string  $message
      */
-    public function warning(array $options)
+    public function warning($message)
     {
-        return $options;
+        session()->flash('warning', $message);
     }
 
     /**
      * Alert Info event.
      *
-     * @param  array  $options - User-defined SweetAlert2 options
-     * @return array  $options
+     * @param  string  $message
      */
-    public function info(array $options)
+    public function info($message)
     {
-        return $options;
+        session()->flash('warning', $message);
     }
 
     /**
      * Alert Error event.
      *
-     * @param  array  $options - User-defined SweetAlert2 options
-     * @return array  $options
+     * @param  string  $message
      */
-    public function error(array $options)
+    public function error($message)
     {
-        return $options;
+        session()->flash('warning', $message);
     }
 }

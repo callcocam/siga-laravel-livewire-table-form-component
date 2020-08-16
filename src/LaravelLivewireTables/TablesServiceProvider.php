@@ -33,5 +33,6 @@ class TablesServiceProvider extends ServiceProvider
 
         $this->publishes([__DIR__ . '/../../config/lw-tables-config.php' => config_path('lw-tables-config.php')], 'lw-tables-config');
         $this->publishes([__DIR__ . '/../../resources/views/livewire/table' => resource_path('views/livewire/vendor/lw-tables')], 'lw-tables-views');
+
     }
 }

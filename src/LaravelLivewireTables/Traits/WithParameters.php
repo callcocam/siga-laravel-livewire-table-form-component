@@ -10,6 +10,7 @@ namespace Call\LaravelLivewireTables\Traits;
 trait WithParameters
 {
 
+
     public function refresh(){
 
         return route(sprintf("admin.%s.index", $this->route()));
@@ -19,7 +20,6 @@ trait WithParameters
 
         return route(sprintf("admin.%s.create", $this->route()), $this->getUpdatesQueryParametersClean());
     }
-
 
     public function getUpdatesQueryParameters($model)
     {

@@ -94,29 +94,31 @@ abstract class FormComponent extends Component
 
     public function success()
     {
-        if(isset($this->form_data['id']) && $this->form_data['id']){
+        if($this->getId()){
             try{
-                foreach ($this->query()->getModel()->getFillable() as $field) $field_names[$field] = $this->form_data[$field];
-                $this->model = $this->query()->where('id',$this->form_data['id'])->first();
-                $this->model->update($field_names);
+                $this->model = $this->query()->where('id',$this->getId())->first();
+                $this->model->update($this->getFillable());
                 $this->result = true;
                 $this->alert('success', $this->messagesUpdate);
+                notify()->success($this->messagesUpdate);
             }
             catch (\PDOException $PDOException){
                 $this->result = false;
                 $this->alert('error', $PDOException->getMessage());
+                notify()->error($PDOException->getMessage());
             }
         }
         else{
             try{
-                foreach ($this->query()->getModel()->getFillable() as $field) $field_names[$field] = $this->form_data[$field];
-                $this->model = $this->query()->create($field_names);
+                $this->model = $this->query()->create($this->getFillable());
                 $this->result = true;
+                notify()->success($this->messagesCreate);
                 $this->alert('success', $this->messagesCreate);
             }
             catch (\PDOException $PDOException){
                 $this->result = false;
                 $this->alert('error', $PDOException->getMessage());
+                notify()->error($PDOException->getMessage());
             }
 
         }
@@ -137,7 +139,7 @@ abstract class FormComponent extends Component
 
     public function GoBackEdit()
     {
-        return redirect()->back();
+        return redirect()->back()->withInput();
     }
 
 
@@ -257,6 +259,16 @@ abstract class FormComponent extends Component
         $this->form[$filed->name] = $filed;
 
         return $this;
+    }
+
+    protected function getFillable(){
+        $field_names = [];
+        foreach ($this->query()->getModel()->getFillable() as $field) {
+            if(isset($this->form_data[$field]))
+                $field_names[$field] = $this->form_data[$field];
+        }
+
+        return $field_names;
     }
 
 }

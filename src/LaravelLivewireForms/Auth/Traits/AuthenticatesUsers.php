@@ -23,6 +23,8 @@ trait AuthenticatesUsers
 
     public function saveAndStayResponse()
     {
+        notify()->success("Login realizado com sucesso");
+        $this->alert("Login realizado com sucesso");
         if($this->guard()->check()){
             return "admin";
         }
@@ -48,6 +50,7 @@ trait AuthenticatesUsers
         $this->validateLogin();
 
         if ($this->attemptLogin()) {
+
             return $this->sendLoginResponse();
         }
 
