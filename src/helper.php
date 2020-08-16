@@ -44,6 +44,14 @@ if(!function_exists('form_views_arrays')){
 }
 
 
+if(!function_exists('alert_views')){
+
+    function alert_views($view){
+        return sprintf("lw-alert-views::%s", $view);
+    }
+}
+
+
 use Call\LavewireNotify\Notify;
 
 if (! function_exists('notify')) {
