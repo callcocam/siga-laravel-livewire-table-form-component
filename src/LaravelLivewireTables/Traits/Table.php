@@ -56,6 +56,16 @@ trait Table
      */
     public $responsive = 'table-responsive';
 
+
+    /**
+     *
+     * @return string|null
+     */
+    public function getTitle(): ?string
+    {
+        return "Basic Table";
+    }
+
     /**
      * @param $attribute
      *

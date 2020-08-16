@@ -109,6 +109,7 @@ abstract class TableComponent extends Component
         return table_views('table-component');
     }
 
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
