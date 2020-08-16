@@ -4,6 +4,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
                 <div class="card-body">
+                    @include(alert_views())
                     @foreach($fields as $field)
                         @if($field->view)
                             @include($field->view)

@@ -22,9 +22,9 @@ trait Kill
     {
         try {
             $this->query()->find($id)->delete();
-            $this->alert('success', $this->messagesDelete);
+            $this->alert($this->messagesDelete);
         }catch (\Exception $exception){
-            $this->alert('error', $exception->getMessage());
+            $this->error($exception->getMessage());
 
         }
     }

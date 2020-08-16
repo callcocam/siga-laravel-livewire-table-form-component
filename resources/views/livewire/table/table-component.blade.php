@@ -8,13 +8,7 @@
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
-                    <div>
-                        @if (session()->has('message'))
-                            <div class="alert alert-success">
-                                {{ session('message') }}
-                            </div>
-                        @endif
-                    </div>
+                    @include(alert_views())
                     @if (is_numeric($refresh))
                         <div class="{{ $wrapperClass }}" wire:poll.{{ $refresh }}.ms>
                             @elseif (is_string($refresh))

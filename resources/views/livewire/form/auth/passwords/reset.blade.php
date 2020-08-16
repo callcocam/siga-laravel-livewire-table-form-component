@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -7,6 +6,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
                 <div class="card-body">
+                    @include(alert_views())
                     @foreach($fields as $field)
                         @if($field->view)
                             @include($field->view)

@@ -23,9 +23,9 @@ trait AuthenticatesUsers
 
     public function saveAndStayResponse()
     {
-        notify()->success("Login realizado com sucesso");
-        $this->alert("Login realizado com sucesso");
+
         if($this->guard()->check()){
+            $this->alert("Login realizado com sucesso");
             return "admin";
         }
 
@@ -105,6 +105,7 @@ trait AuthenticatesUsers
      */
     protected function sendFailedLoginResponse()
     {
+        $this->error(trans('auth.failed'));
         throw ValidationException::withMessages([
             $this->username() => [trans('auth.failed')],
         ]);

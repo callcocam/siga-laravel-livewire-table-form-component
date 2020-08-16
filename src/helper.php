@@ -46,7 +46,7 @@ if(!function_exists('form_views_arrays')){
 
 if(!function_exists('alert_views')){
 
-    function alert_views($view){
+    function alert_views($view="messages"){
         return sprintf("lw-alert-views::%s", $view);
     }
 }

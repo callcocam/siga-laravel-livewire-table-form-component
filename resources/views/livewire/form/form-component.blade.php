@@ -6,13 +6,7 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body">
-                            <div>
-                                @if (session()->has('message'))
-                                    <div class="alert alert-success">
-                                        {{ session('message') }}
-                                    </div>
-                                @endif
-                            </div>
+                          @include(alert_views())
                             @foreach($fields as $field)
                                 @if($field->view)
                                     @include(form_views($field->view))

@@ -4,11 +4,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    @include(alert_views())
                     @foreach($fields as $field)
                         @if($field->view)
                             @include($field->view)
