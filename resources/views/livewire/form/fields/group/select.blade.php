@@ -1,6 +1,6 @@
-<div class="form-group row">
-    @include(form_views_fields('label'))
-    <div class="col-md">
+<div class="col-md-{{ $field->coll }}">
+    <div class="form-group">
+        @include(form_views_fields('group.label'))
         <select
             id="{{ $field->name }}"
             class="{{  $field->class ?? 'custom-select'  }} @error($field->key) is-invalid @enderror"

@@ -1,11 +1,11 @@
 <div class="form-group row">
-    @include(form_views_fields('label'))
+    @include(form_views_fields('group.label'))
     <div class="col-md">
         <div class="custom-file">
             <input
                 id="{{ $field->name }}"
                 type="file"
-                class="{{  $field->class ?? 'custom-file-input'  }} @error($field->key) is-invalid @enderror"
+                class=" {{ $field->class ?? 'custom-file-input' }}  @error($field->key) is-invalid @enderror"
                 {{ $field->file_multiple ? 'multiple' : '' }}>
 
             <label class="custom-file-label" for="{{ $field->name }}">

@@ -33,8 +33,8 @@ trait AuthenticatesUsers
     public function fields()
     {
         return [
-            FieldComponent::make('Email')->input('email')->rules(['required', 'email', 'max:255']),
-            FieldComponent::make('Password')->input('password')->rules(['required', 'min:8']),
+            FieldComponent::make('Email')->input('email')->rules(['required', 'email', 'max:255'])->setIsShowLabel(),
+            FieldComponent::make('Password')->input('password')->rules(['required', 'min:8'])->setIsShowLabel(),
         ];
     }
 

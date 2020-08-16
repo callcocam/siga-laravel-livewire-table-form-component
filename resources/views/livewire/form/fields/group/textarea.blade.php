@@ -1,5 +1,5 @@
 <div class="form-group row">
-    @include(form_views_fields('label'))
+    @include(form_views_fields('group.label'))
     <div class="col-md">
         <textarea
             id="{{ $field->name }}"
