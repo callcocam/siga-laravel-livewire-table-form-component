@@ -83,6 +83,12 @@ abstract class FormComponent extends Component
         return "Create";
     }
 
+    public function BackList()
+    {
+        return route(sprintf('admin.%s.index', $this->route()),$this->getUpdatesQueryParametersClean());
+    }
+
+
     public function formTemplate()
     {
         return form_views("form-component");
