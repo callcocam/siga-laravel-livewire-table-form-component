@@ -11,6 +11,7 @@ namespace Call\Suports\Tenant;
 use Call\Suports\Tenant\Facades\Tenant;
 use Illuminate\Support\ServiceProvider;
 use App\Tenant as SIGATenant;
+use Ramsey\Uuid\Uuid;
 
 class TenantServiceProvider extends ServiceProvider
 {
@@ -32,22 +33,28 @@ class TenantServiceProvider extends ServiceProvider
         }
         try {
 
-            $tenant = \DB::table('tenants')->where('domain', request()->getHost())->first();
+            $tenant = \DB::table('tenants')->where('name', request()->getHost())->first();
+            if(!$this->app->runningInConsole()){
+                if (!$tenant) {
 
-            if ($tenant) {
+                   if(\DB::insert('insert into tenants (id, name) values (?, ?)', [Uuid::uuid4(), request()->getHost()]))
+                       $tenant = \DB::table('tenants')->where('name', request()->getHost())->first();
 
-                $company = SIGATenant::find($tenant->id);
-
-                Tenant::addTenant("tenant_id", $tenant->id);
-
-                if($company->companies){
-                    view()->share('tenant',  $company->companies);
                 }
-                else{
-                    view()->share('tenant',  $tenant);
-                }
+                if ($tenant) {
+                    $company = SIGATenant::find($tenant->id);
 
+                    Tenant::addTenant("tenant_id", $tenant->id);
+
+                    if($company->companies){
+                        view()->share('tenant',  $company->companies);
+                    }
+                }
             }
+            else{
+                view()->share('tenant',  $tenant);
+            }
+
         } catch (\PDOException $th) {
             //throw $th;
             dump("Falha no tenant");
