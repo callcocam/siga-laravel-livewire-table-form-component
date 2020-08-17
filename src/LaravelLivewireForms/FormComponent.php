@@ -66,6 +66,23 @@ abstract class FormComponent extends Component
         return $this->getFormDataKey('id');
 
     }
+
+    public function title()
+    {
+        return "Basic Form";
+    }
+
+    public function subtitle(){
+        return null;
+    }
+
+    public function action(){
+        if($this->getId())
+            return "Edit";
+
+        return "Create";
+    }
+
     public function formTemplate()
     {
         return form_views("form-component");
