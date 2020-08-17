@@ -5,6 +5,13 @@
                 <!-- Card header -->
                 <div class="card-header border-0">
                     <h3 class="mb-0">Light table</h3>
+                    <div class="breadcrumb">
+                        <h1>{{ __('System') }}</h1>
+                        <ul>
+                            <li><a href="{{ route('admin') }}">{{ __('Dashboard') }}</a></li>
+                            <li>{{ $this->getTitle() }}</li>
+                        </ul>
+                    </div>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
