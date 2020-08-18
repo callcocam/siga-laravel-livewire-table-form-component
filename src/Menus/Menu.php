@@ -28,7 +28,7 @@ class Menu
     }
 
     public function add(Item $item){
-        $this->items[] = $item->all();
+        $this->items[] = $item;
         return $this;
     }
 

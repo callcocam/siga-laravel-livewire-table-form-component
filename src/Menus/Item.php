@@ -4,6 +4,8 @@
 namespace Call\Menus;
 
 
+use Illuminate\Support\Facades\Route;
+
 class Item
 {
     public $label;
@@ -52,6 +54,14 @@ class Item
             'route'=>$this->route,
             'icon'=>$this->icon
         ];
+    }
+
+    public function isRoute(){
+
+        if(Route::has($this->route))
+            return  route($this->route);
+
+        return "#";
     }
 
 
