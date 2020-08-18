@@ -9,7 +9,7 @@ class Menu
 
     protected $items = [];
     protected $label;
-    protected $icon = "";
+    protected $icon = "i-Arrow-Forward-2";
     protected $route;
 
     /**
