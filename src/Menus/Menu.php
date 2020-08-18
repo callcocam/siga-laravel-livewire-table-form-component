@@ -73,4 +73,14 @@ class Menu
             'items'=>$this->items
         ];
     }
+
+    public function items(){
+
+        return $this->items;
+    }
+
+    public function __get($name)
+    {
+        return $this->{$name};
+    }
 }

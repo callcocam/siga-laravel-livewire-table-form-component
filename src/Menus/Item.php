@@ -6,7 +6,7 @@ namespace Call\Menus;
 
 class Item
 {
-    protected $label;
+    public $label;
     protected $icon = "i-Arrow-Forward-2";
     protected $route;
 
@@ -54,4 +54,9 @@ class Item
         ];
     }
 
+
+    public function __get($name)
+    {
+        return $this->{$name};
+    }
 }
