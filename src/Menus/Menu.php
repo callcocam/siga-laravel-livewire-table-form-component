@@ -79,6 +79,10 @@ class Menu
         return $this->items;
     }
 
+    public function isMenu()
+    {
+        return count($this->items) <= 1;
+    }
     public function __get($name)
     {
         return $this->{$name};
