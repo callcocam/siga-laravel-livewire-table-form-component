@@ -37,8 +37,8 @@ class TenantServiceProvider extends ServiceProvider
             if(!$this->app->runningInConsole()){
                 if (!$tenant) {
 
-                   if(\DB::insert('insert into tenants (id, name,created_at, updated_at) values (?, ?, ?,?)', [Uuid::uuid4(), request()->getHost()]))
-                       $tenant = \DB::table('tenants')->where('name', request()->getHost())->first();
+                    if(\DB::insert('insert into tenants (id, name,created_at, updated_at) values (?, ?, ?,?)', [Uuid::uuid4(), request()->getHost(),today(), today()]))
+                        $tenant = \DB::table('tenants')->where('name', request()->getHost())->first();
 
                 }
                 if ($tenant) {
