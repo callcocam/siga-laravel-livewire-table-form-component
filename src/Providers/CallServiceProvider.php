@@ -11,6 +11,7 @@ use Call\Commands\MakeRoue;
 use Call\LaravelLivewireTables\TablesServiceProvider;
 use Call\LavewireNotify\NotifyServiceProvider;
 use Call\LivewireAlert\LivewireAlertServiceProvider;
+use Call\MigrationsGenerator\MigrationsGeneratorServiceProvider;
 use Call\Suports\Tenant\TenantServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as ServiceProviderAlias;
@@ -21,6 +22,8 @@ class CallServiceProvider extends ServiceProviderAlias
 
     public function register()
     {
+        $this->app->register(MigrationsGeneratorServiceProvider::class);
+
         $this->app->register(TenantServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(TablesServiceProvider::class);

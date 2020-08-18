@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Created by Claudio Campos.
+ * User: callcocam@gmail.com, contato@sigasmart.com.br
+ * https://www.sigasmart.com.br
+ */
+
+class {{class}} extends AbstractSeeder
+{
+
+
+    protected function insertData($table,$data){
+
+        foreach($data as $item){
+                \DB::table($table)->insert($data);
+        }
+    }
+    /**
+     * Auto generated seed file
+     *
+     * @return void
+     */
+    public function run()
+    {
+        {{prerun_event}}
+
+        \DB::table('{{table}}')->delete();
+        {{insert_statements}}
+
+        {{postrun_event}}
+    }
+}

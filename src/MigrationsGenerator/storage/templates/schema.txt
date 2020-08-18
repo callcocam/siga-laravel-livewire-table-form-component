@@ -1,0 +1,14 @@
+if(!Schema::hasTable('$TABLE$')):
+	Schema::$METHOD$('$TABLE$', function(Blueprint $table)
+			{
+                $table->uuid('id')->primary();
+                $table->uuid('tenant_id')->nullable();
+                $table->uuid('user_id')->nullable();
+                $FIELDS$
+                $table->enum('status', ['deleted','draft','published']);
+                $table->softDeletes();
+                $table->timestamps();
+                $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('CASCADE');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+			});
+endif;

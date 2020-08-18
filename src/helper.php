@@ -1,5 +1,11 @@
 <?php
 
+if(!function_exists('call_migration_generate_path')){
+
+    function call_migration_generate_path($path =""){
+        return str_replace(['\\', '/'],[DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR], sprintf("%s%sMigrationsGenerator%s%s", realpath(__DIR__),DIRECTORY_SEPARATOR,DIRECTORY_SEPARATOR, $path));
+    }
+}
 if(!function_exists('form_row')){
 
     function form_row(\Call\LaravelLivewireForms\Fields\Component\FieldComponent $field, $options =[]){
@@ -96,5 +102,16 @@ if (! function_exists('notify_css')) {
         $styles = config('notify.'.$driver.'.notify_css');
 
         return '<link rel="stylesheet" type="text/css" href="'.implode('"><link rel="stylesheet" type="text/css" href="', $styles).'">';
+    }
+}
+
+
+if (!function_exists('get_reflection_method')) {
+    function get_reflection_method($object, $method)
+    {
+        $reflectionMethod = new \ReflectionMethod($object, $method);
+        $reflectionMethod->setAccessible(true);
+
+        return $reflectionMethod;
     }
 }
