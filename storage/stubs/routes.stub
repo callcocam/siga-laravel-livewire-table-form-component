@@ -5,10 +5,9 @@ Route::group([
     Route::group([
         'middleware'=>'auth'
     ], function(){
-        Route::livewire('/DummyRoutes', 'admin.DummyRoutes.DummyRoute-table')->name('admin.DummyRoutes.index');
-        Route::livewire('/DummyRoutes/create', 'admin.DummyRoutes.DummyRoute-form')->name('admin.DummyRoutes.create');
-        Route::livewire('/DummyRoutes/{model}/edit', 'admin.DummyRoutes.DummyRoute-form')->name('admin.DummyRoutes.edit');
-        Route::livewire('/DummyRoutes/{model}/show', 'admin.DummyRoutes.DummyRoutes-form')->name('admin.DummyRoutes.show');
-        Route::livewire('/DummyRoutes/{model}/destroy', 'admin.DummyRoutes.DummyRoutes-form')->name('admin.DummyRoutes.destroy');
+        Route::livewire('/DummyRoutes', 'admin.DummyModel.DummyRoute-table')->name('admin.DummyRoutes.index');
+        Route::livewire('/DummyRoutes/create', 'admin.DummyModel.DummyRoute-form')->name('admin.DummyRoutes.create');
+        Route::livewire('/DummyRoutes/{model}/edit', 'admin.DummyModel.DummyRoute-form')->name('admin.DummyRoutes.edit');
+        Route::livewire('/DummyRoutes/{model}/show', 'admin.DummyModel.DummyRoutes-form')->name('admin.DummyRoutes.show');
     });
 });

@@ -5,6 +5,7 @@ namespace Call\Commands;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class MakeRoute extends AbstractCommand
 {
@@ -14,8 +15,15 @@ class MakeRoute extends AbstractCommand
 
     protected function getStub()
     {
-        return File::get(__DIR__ . '/../../storage/stubs/routes.stub');
+        return __DIR__ . '/../../storage/stubs/menus.stub';
     }
+
+
+    protected function getStubRouet()
+    {
+        return __DIR__ . '/../../storage/stubs/routes.stub';
+    }
+
     public function handle()
     {
         $namespaceAndName = $this->argument('name');
@@ -23,14 +31,36 @@ class MakeRoute extends AbstractCommand
         $explode = explode("/", $namespaceAndName);
 
         $name = Arr::last($explode);
-        
-        $stub = $this->getStub();
+
+        $menuIndex = count($explode);
+
+        $menuName = $name;
+        if($menuIndex>1){
+            $menuIndex = ($menuIndex-2);
+            if($menuIndex){
+                $menuName = $explode[$menuIndex];
+            }
+        }
+
+        $stub = File::get($this->getStub());
+        $stub = str_replace('DummyMenu', $name, $stub);
+        $stub = str_replace('DummyModel', $menuName, $stub);
         $stub = str_replace('DummyRoute', strtolower($name), $stub);
-        $path = app_path(sprintf('Http/Livewire/routes/%s.php', strtolower($name)));
-        File::ensureDirectoryExists(app_path('Http/Livewire/routes'));
-        if (!File::exists($path) || $this->confirm($name . ' already exists. Overwrite it?')) {
+        $path = app_path(sprintf('Http/Livewire/Menus/%sMenu.php', $name));
+        File::ensureDirectoryExists(app_path('Http/Livewire/Menus'));
+        if (!File::exists($path) || $this->confirm($name . ' already menus exists. Overwrite it?')) {
             File::put($path, $stub);
-            $this->info($name . ' was made!');
+            $this->info($name . ' menus was made!');
+        }
+        $stub = File::get($this->getStubRouet());
+
+        $stub = str_replace('DummyModel', strtolower($menuName), $stub);
+        $stub = str_replace('DummyRoute', strtolower($name), $stub);
+        $path = base_path(sprintf('routes/liviwire/%s.php', strtolower($name)));
+        File::ensureDirectoryExists(base_path('routes/liviwire'));
+        if (!File::exists($path) || $this->confirm($name . ' already route exists. Overwrite it?')) {
+            File::put($path, $stub);
+            $this->info($name . ' route was made!');
         }
     }
 }

@@ -14,6 +14,8 @@ use Call\LavewireNotify\NotifyServiceProvider;
 use Call\LivewireAlert\LivewireAlertServiceProvider;
 use Call\MigrationsGenerator\MigrationsGeneratorServiceProvider;
 use Call\Suports\Tenant\TenantServiceProvider;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as ServiceProviderAlias;
 use Call\LaravelLivewireForms\FormServiceProvider;
@@ -41,6 +43,7 @@ class CallServiceProvider extends ServiceProviderAlias
             $this->mapDynamicWebRoutes();
 
         }
+        $this->mapMenus();
         $this->loadPublish();
         if ($this->app->runningInConsole()) {
             $this->commands([MakeCrud::class]);
@@ -49,6 +52,18 @@ class CallServiceProvider extends ServiceProviderAlias
         }
     }
 
+    protected $dependencies;
+    protected function mapMenus(){
+
+
+        collect(glob(app_path('Http/Livewire/Menus/*.php')))
+            ->each(function($path) {
+                $fileName = File::name($path);
+                $this->dependencies[] = app(sprintf("\\App\\Http\\Livewire\\Menus\\%s", $fileName))->getMenus();
+            });
+        view()->share('menus',  $this->dependencies);
+
+    }
     protected function mapWebRoutes()
     {
         Route::middleware('web')
