@@ -61,6 +61,7 @@ class CallServiceProvider extends ServiceProviderAlias
                 $fileName = File::name($path);
                 $this->dependencies[] = app(sprintf("\\App\\Http\\Livewire\\Menus\\%s", $fileName))->getMenus();
             });
+
         view()->share('menus',  $this->dependencies);
 
     }

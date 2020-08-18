@@ -4,6 +4,8 @@
 namespace Call\Menus;
 
 
+use Illuminate\Support\Facades\Route;
+
 class Menu
 {
 
@@ -79,9 +81,18 @@ class Menu
         return $this->items;
     }
 
+
+    public function isRoute(){
+
+        if(Route::has($this->route))
+            return  route($this->route);
+
+        return "#";
+    }
+
     public function isMenu()
     {
-        return count($this->items) <= 1;
+        return count($this->items()) <= 1;
     }
     public function __get($name)
     {
