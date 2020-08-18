@@ -5,6 +5,7 @@ namespace Call\LaravelLivewireTables\Commands;
 
 
 use Call\Commands\AbstractCommand;
+use Illuminate\Support\Facades\File;
 
 class MakeTable extends AbstractCommand
 {
@@ -15,6 +16,6 @@ class MakeTable extends AbstractCommand
 
     protected function getStub()
     {
-        return __DIR__ . '/../../../storage/stubs/table.stub';
+        return File::get(__DIR__ . '/../../../storage/stubs/table.stub');
     }
 }

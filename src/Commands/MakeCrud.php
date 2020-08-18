@@ -24,16 +24,7 @@ class MakeCrud extends Command
         $this->call('makeApp:table',$arguments);
         $this->call('makeApp:route',$arguments);
         if($this->option('default')){
-            if (!File::exists(app_path("%s.php", $this->option('model')))) {
-                $this->call('make:model',[
-                    'name' => $this->option('model'),
-                    '-m' => true
-                ]);
-                $this->call('make:factory',[
-                    'name' => sprintf("%sFactory",$this->option('model')),
-                    '--model' => $this->option('model')
-                ]);
-            }
+            $this->call('makeApp:model',$arguments);
         }
 
     }

@@ -29,7 +29,7 @@ abstract class AbstractCommand extends Command
 
         $namespace = ucwords($namespace, '/');
 
-        $stub = File::get($this->getStub());
+        $stub = $this->getStub();
         $stub = str_replace('DummyNameSpace', str_replace("/", "\\", sprintf("App\Http\Livewire\%s", $namespace)), $stub);
         $stub = str_replace('DummyComponent', $name, $stub);
         $stub = str_replace('DummyModel', $this->option('model'), $stub);

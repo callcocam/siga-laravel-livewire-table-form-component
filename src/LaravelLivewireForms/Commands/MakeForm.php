@@ -7,6 +7,7 @@
 namespace Call\LaravelLivewireForms\Commands;
 
 use Call\Commands\AbstractCommand;
+use Illuminate\Support\Facades\File;
 
 class MakeForm extends AbstractCommand
 {
@@ -16,6 +17,6 @@ class MakeForm extends AbstractCommand
 
     protected function getStub()
     {
-        return  __DIR__ . '/../../../storage/stubs/form.stub';
+        return File::get( __DIR__ . '/../../../storage/stubs/form.stub');
     }
 }

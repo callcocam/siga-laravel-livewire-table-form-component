@@ -7,7 +7,8 @@
 namespace Call\Providers;
 
 use Call\Commands\MakeCrud;
-use Call\Commands\MakeRoue;
+use Call\Commands\MakeModel;
+use Call\Commands\MakeRoute;
 use Call\LaravelLivewireTables\TablesServiceProvider;
 use Call\LavewireNotify\NotifyServiceProvider;
 use Call\LivewireAlert\LivewireAlertServiceProvider;
@@ -43,7 +44,8 @@ class CallServiceProvider extends ServiceProviderAlias
         $this->loadPublish();
         if ($this->app->runningInConsole()) {
             $this->commands([MakeCrud::class]);
-            $this->commands([MakeRoue::class]);
+            $this->commands([MakeRoute::class]);
+            $this->commands([MakeModel::class]);
         }
     }
 
