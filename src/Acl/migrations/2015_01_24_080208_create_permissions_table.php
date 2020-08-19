@@ -15,11 +15,15 @@ class CreatePermissionsTable extends Migration
         $name = config('acl.tables.permissions');
 
         Schema::create($name, function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->uuid('id')->primary();
+            $table->uuid('tenant_id')->nullable();
+            $table->string('name', 255)->unique();
+            $table->string('slug', 255)->unique();
+            $table->enum('status', ['deleted','draft','published']);
             $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('CASCADE');
         });
     }
 
