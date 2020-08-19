@@ -26,6 +26,15 @@ trait LivewireAlert
         ]);
     }
 
+    /**
+     * Alert primary event.
+     *
+     * @param  string  $message
+     */
+    public function primary($message)
+    {
+        session()->flash('primary', $message);
+    }
 
     /**
      * Alert Success event.
@@ -64,6 +73,6 @@ trait LivewireAlert
      */
     public function error($message)
     {
-        session()->flash('warning', $message);
+        session()->flash('error', $message);
     }
 }
