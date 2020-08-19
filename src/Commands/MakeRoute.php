@@ -56,8 +56,8 @@ class MakeRoute extends AbstractCommand
 
         $stub = str_replace('DummyModel', strtolower($menuName), $stub);
         $stub = str_replace('DummyRoute', strtolower($name), $stub);
-        $path = base_path(sprintf('routes/liviwire/%s.php', strtolower($name)));
-        File::ensureDirectoryExists(base_path('routes/liviwire'));
+        $path = base_path(sprintf('routes/livewire/%s.php', strtolower($name)));
+        File::ensureDirectoryExists(base_path('routes/livewire'));
         if (!File::exists($path) || $this->confirm($name . ' already route exists. Overwrite it?')) {
             File::put($path, $stub);
             $this->info($name . ' route was made!');
