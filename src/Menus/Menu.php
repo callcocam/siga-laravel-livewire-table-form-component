@@ -61,7 +61,7 @@ class Menu
 
         if($this->items){
             foreach ($this->items as $item) {
-                $permissions[] = $item->route();
+                $permissions[] = $item->route;
             }
         }
         return $permissions;
@@ -89,6 +89,7 @@ class Menu
 
         return "#";
     }
+
 
     public function isMenu()
     {
