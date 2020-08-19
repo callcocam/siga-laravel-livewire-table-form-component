@@ -54,7 +54,7 @@ class AclServiceProvider extends ServiceProvider
      */
     protected function registerGates()
     {
-        Gate::before(function(Authorizable $user, String $permission) {
+        Gate::before(function(Authorizable $user, $permission) {
             try {
                 if (method_exists($user, 'hasPermissionTo')) {
                     return $user->hasPermissionTo($permission) ?: null;
