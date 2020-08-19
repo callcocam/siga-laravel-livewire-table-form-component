@@ -6,6 +6,7 @@
  */
 namespace Call\Providers;
 
+use Call\Acl\AclServiceProvider;
 use Call\Commands\MakeCrud;
 use Call\Commands\MakeModel;
 use Call\Commands\MakeRoute;
@@ -28,6 +29,7 @@ class CallServiceProvider extends ServiceProviderAlias
         $this->app->register(MigrationsGeneratorServiceProvider::class);
 
         $this->app->register(TenantServiceProvider::class);
+        $this->app->register(AclServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(TablesServiceProvider::class);
         $this->app->register(NotifyServiceProvider::class);
