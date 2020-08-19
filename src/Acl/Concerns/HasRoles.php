@@ -8,7 +8,7 @@ namespace Call\Acl\Concerns;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use App\Acl\Contracts\Role;
+use Call\Acl\Contracts\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait HasRoles
