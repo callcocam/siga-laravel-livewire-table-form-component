@@ -28,11 +28,11 @@ class TablesServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([MakeTable::class]);
         }
-        $this->loadViewsFrom(__DIR__.config('lw-tables-config.load-views','/../../resources/views/livewire/table'), 'lw-tables-views');
+        $this->loadViewsFrom(__DIR__.config('lw-tables-config.load-views','/../../resources/views/livewire/lw-tables'), 'lw-tables-views');
         $this->loadRoutesFrom(__DIR__ . '/../../routes/table.php');
 
         $this->publishes([__DIR__ . '/../../config/lw-tables-config.php' => config_path('lw-tables-config.php')], 'lw-tables-config');
-        $this->publishes([__DIR__ . '/../../resources/views/livewire/table' => resource_path('views/livewire/vendor/lw-tables')], 'lw-tables-views');
+        $this->publishes([__DIR__ . '/../../resources/views/livewire/lw-tables' => resource_path('views/livewire/vendor/lw-tables')], 'lw-tables-views');
 
     }
 }

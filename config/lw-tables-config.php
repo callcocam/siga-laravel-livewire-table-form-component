@@ -1,4 +1,4 @@
 <?php
 return [
-    'load-views'=>'/../../resources/views/livewire/table'
+    'load-views'=>'/../../resources/views/livewire/lw-tables'
 ];
