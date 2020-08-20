@@ -8,6 +8,7 @@ namespace Call\Providers;
 
 use Call\Acl\AclServiceProvider;
 use Call\Commands\MakeCrud;
+use Call\Commands\MakeInstall;
 use Call\Commands\MakeModel;
 use Call\Commands\MakeRoute;
 use Call\LaravelLivewireTables\TablesServiceProvider;
@@ -51,6 +52,7 @@ class CallServiceProvider extends ServiceProviderAlias
         $this->loadPublish();
         $this->installScaffolding();
         if ($this->app->runningInConsole()) {
+            $this->commands([MakeInstall::class]);
             $this->commands([MakeCrud::class]);
             $this->commands([MakeRoute::class]);
             $this->commands([MakeModel::class]);
