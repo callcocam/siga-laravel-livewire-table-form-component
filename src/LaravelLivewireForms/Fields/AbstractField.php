@@ -8,6 +8,7 @@ namespace Call\LaravelLivewireForms\Fields;
 
 
 use Call\LaravelLivewireForms\Fields\Traits\CheckBox;
+use Call\LaravelLivewireForms\Fields\Traits\DataList;
 use Call\LaravelLivewireForms\Fields\Traits\Divider;
 use Call\LaravelLivewireForms\Fields\Traits\Hidden;
 use Call\LaravelLivewireForms\Fields\Traits\Icon;
@@ -21,7 +22,7 @@ use Illuminate\Support\Arr;
 
 abstract class AbstractField
 {
-    use CheckBox, Icon, Label, Radio, Select, TextArea, Divider, Row, Hidden, WithAttributes;
+    use CheckBox, Icon, Label, Radio, Select, TextArea, Divider, Row, Hidden, DataList, WithAttributes;
     protected $name;
     protected $type;
     protected $class;

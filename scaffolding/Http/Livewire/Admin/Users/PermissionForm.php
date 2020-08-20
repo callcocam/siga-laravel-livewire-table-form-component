@@ -9,6 +9,7 @@ namespace App\Http\Livewire\Admin\Users;
 use App\Permission;
 use Call\LaravelLivewireForms\FormComponent;
 use Call\LaravelLivewireForms\Fields\Component\FieldComponent;
+use Call\Suports\Helpers\LoadRouterHelper;
 
 class PermissionForm extends FormComponent
 {
@@ -26,8 +27,10 @@ class PermissionForm extends FormComponent
 
     public function fields()
     {
+        $routes = LoadRouterHelper::make();
+
         return [
-            FieldComponent::make('Name')->input()->rules('required'),
+            FieldComponent::make('Name')->input()->datalist($routes)->rules('required'),
         ];
     }
     public function route(){

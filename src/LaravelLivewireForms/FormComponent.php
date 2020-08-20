@@ -26,6 +26,7 @@ abstract class FormComponent extends Component
     protected $messages;
     protected $model;
     public $form =[];
+    public $datList =[];
     public $form_data;
     private static $storage_disk;
     private static $storage_path;
@@ -64,6 +65,12 @@ abstract class FormComponent extends Component
     public function getId(){
 
         return $this->getFormDataKey('id');
+
+    }
+
+    public function datList(){
+
+        return $this->datList;
 
     }
 
