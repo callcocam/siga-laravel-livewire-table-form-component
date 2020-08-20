@@ -33,6 +33,11 @@ class MakeInstall extends AbstractCommand
 
         $this->call('vendor:publish',[
             '--force' => true,
+            '--tag' => 'lw-call-acl-migrations'
+        ]);
+
+        $this->call('vendor:publish',[
+            '--force' => true,
             '--tag' => 'tag=dist-assets'
         ]);
 
