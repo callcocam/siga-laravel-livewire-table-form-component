@@ -63,6 +63,12 @@ class MakeInstall extends AbstractCommand
             '--tag' => 'lw-call-routes'
         ]);
 
+
+        $this->call('vendor:publish',[
+            '--force' => true,
+            '--tag' => 'lw-call-scaffolding'
+        ]);
+
         if(!config('lw-call.tenant', false)){
            unlink(app_path('Tenant.php'));
         }

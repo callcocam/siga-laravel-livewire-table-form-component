@@ -145,7 +145,7 @@ class CallServiceProvider extends ServiceProviderAlias
     protected function installScaffolding()
     {
         $this->publishes([
-            __DIR__.'/../../scaffolding/Livewire/' => app_path('Http/Livewire'),
+            __DIR__.'/../../scaffolding/' => app_path(),
         ], 'lw-call-scaffolding');
     }
     /**
