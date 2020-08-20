@@ -27,8 +27,10 @@ class CallServiceProvider extends ServiceProviderAlias
     public function register()
     {
         $this->app->register(MigrationsGeneratorServiceProvider::class);
+        if(config('lw-call.tenant', false)){
+            $this->app->register(TenantServiceProvider::class);
+        }
 
-        $this->app->register(TenantServiceProvider::class);
         $this->app->register(AclServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(TablesServiceProvider::class);
