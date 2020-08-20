@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         if(config('lw-call.tenant', false)){
             \Illuminate\Support\Facades\DB::table('tenants')->delete();
             $Tenant =  factory(\App\Tenant::class)->create([
-                'name'=>"localhost", 'status'=>"published"
+                'name'=>request()->getHost(), 'status'=>"published"
             ])->first()->id;
         }
         \Illuminate\Support\Facades\DB::table('users')->delete();
