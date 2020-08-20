@@ -10,6 +10,7 @@ use App\Permission;
 use Call\LaravelLivewireForms\FormComponent;
 use Call\LaravelLivewireForms\Fields\Component\FieldComponent;
 use Call\Suports\Helpers\LoadRouterHelper;
+use Illuminate\Validation\Rule;
 
 class PermissionForm extends FormComponent
 {
@@ -30,7 +31,7 @@ class PermissionForm extends FormComponent
         $routes = LoadRouterHelper::make();
 
         return [
-            FieldComponent::make('Name')->input()->datalist($routes)->rules('required'),
+            FieldComponent::make('Name')->input()->datalist($routes)->rules(['required', Rule::unique('permissions','name')->ignore($this->getId())]),
         ];
     }
     public function route(){

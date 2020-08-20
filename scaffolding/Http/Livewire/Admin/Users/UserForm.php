@@ -6,10 +6,12 @@
  */
 namespace App\Http\Livewire\Admin\Users;
 
+use App\Role;
 use App\User;
 use Call\LaravelLivewireForms\FormComponent;
 use Call\LaravelLivewireForms\Fields\Component\FieldComponent;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserForm extends FormComponent
 {
@@ -37,12 +39,15 @@ class UserForm extends FormComponent
 
     public function fields()
     {
+        $roles = Role::orderBy('name')->get()->pluck('id', 'name')->all();
         return [
-            FieldComponent::make('id')->input('hidden')->view("fields.hidden"),
-            FieldComponent::make('Name')->input()->rules('required'),
-            FieldComponent::make('Email')->input()->rules('required'),
-            FieldComponent::make('Cover')->file()->multiple()->rules('required'),
+            FieldComponent::make('id')->input('hidden')->view('fields.hidden'),
+            FieldComponent::make('Name')->input()->rules(['required', 'string', 'max:255']),
+            FieldComponent::make('Email')->input('email')
+                ->rules(['required', 'string', 'email', 'max:255', Rule::unique('users','email')->ignore($this->getId())]),
+            FieldComponent::make('Roles', 'roles')->checkboxes($roles)->help('Please select a roles.'),
             FieldComponent::make('Password')->input('password'),
+            FieldComponent::make('Description')->textarea(5),
         ];
     }
 
