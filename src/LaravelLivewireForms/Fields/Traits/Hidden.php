@@ -7,13 +7,15 @@
 namespace Call\LaravelLivewireForms\Fields\Traits;
 
 
-trait Select
+trait Hidden
 {
-
-    public function select($options = [])
+    public function hidden()
     {
-        $this->type = 'select';
-        $this->options($options);
+        $this->type = 'hidden';
+        $this->input_type = 'hidden';
+        $this->view('fields.hidden');
         return $this;
     }
+
+
 }
