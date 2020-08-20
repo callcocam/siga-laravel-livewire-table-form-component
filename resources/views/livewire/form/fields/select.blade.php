@@ -3,7 +3,7 @@
     <div class="col-md">
         <select
             id="{{ $field->name }}"
-            class="{{  $field->class ?? 'custom-select'  }} @error($field->key) is-invalid @enderror"
+            class="custom-select @error($field->key) is-invalid @enderror"
             wire:model.lazy="{{ $field->key }}">
 
             <option value="">{{ $field->placeholder }}</option>

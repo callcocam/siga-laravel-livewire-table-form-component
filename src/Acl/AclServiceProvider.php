@@ -106,7 +106,7 @@ class AclServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/migrations/' => database_path('migrations'),
-        ], 'migrations');
+        ], 'lw-call-acl-migrations');
     }
 
     /**
@@ -116,7 +116,7 @@ class AclServiceProvider extends ServiceProvider
      */
     protected function loadMigrations()
     {
-        if (config('acl.migrate', true)) {
+        if (config('acl.migrate', false)) {
             $this->loadMigrationsFrom(__DIR__.'/migrations');
         }
     }

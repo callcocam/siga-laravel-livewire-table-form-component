@@ -23,7 +23,7 @@ class NotifyServiceProvider extends ServiceProvider
         $source = realpath($raw = __DIR__.'/config/notify.php') ?: $raw;
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('notify.php')], 'config');
+            $this->publishes([$source => config_path('notify.php')], 'lw-call-notify-config');
         }
 
         $this->mergeConfigFrom($source, 'notify');

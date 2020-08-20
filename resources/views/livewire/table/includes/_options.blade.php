@@ -3,7 +3,6 @@
         @if ($paginationEnabled && $perPageEnabled)
             <div class="col form-inline">
                 {{ $perPageLabel }}: &nbsp;
-
                 <select wire:model="perPage" class="form-control">
                     @if (is_array($perPageOptions))
                         @foreach ($perPageOptions as $option)
@@ -17,7 +16,6 @@
                 </select>
             </div>
         @endif
-
         @if ($searchEnabled)
             <div class="col-md">
                 <input

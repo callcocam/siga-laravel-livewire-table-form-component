@@ -6,7 +6,7 @@
                 <input
                     id="{{ $field->name . '.' . $loop->index }}"
                     type="checkbox"
-                    class="{{  $field->class ?? 'form-check-input'  }} @error($field->key) is-invalid @enderror"
+                    class="form-check-input @error($field->key) is-invalid @enderror"
                     value="{{ $value }}"
                     wire:model.lazy="{{ $field->key }}">
 

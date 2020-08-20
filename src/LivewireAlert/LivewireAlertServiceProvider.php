@@ -29,7 +29,7 @@ class LivewireAlertServiceProvider extends ServiceProvider
             return view(alert_views('messages'));
         });
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../../config/lw-alert-config.php', 'lw-alert-config');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/lw-alert-config.php', 'lw-call-alert-config');
 
     }
 }

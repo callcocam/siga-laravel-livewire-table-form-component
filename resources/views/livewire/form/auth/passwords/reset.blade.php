@@ -1,27 +1,27 @@
-@extends('layouts.app')
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-                <div class="card-body">
-                    @include(alert_views())
-                    @foreach($fields as $field)
-                        @if($field->view)
-                            @include($field->view)
-                        @else
-                            @include(form_views_fields($field->type))
-                        @endif
-                    @endforeach
-                        <div class="form-group row mb-0">
-                            <div class="col-md-9 offset-md-3">
-                                <button class="btn btn-primary float-right" wire:click="reset">{{ __('Confirm Password') }}</button>
-                            </div>
-                        </div>
-                </div>
+<div class="row">
+    <div class="col-md-6 text-center" style="background-size: cover;background-image: url({{ asset('dist-assets/images/photo-long-3.jpg') }})">
+        <div class="pl-3 auth-right">
+            <div class="auth-logo text-center mt-4"><img src="{{ asset('dist-assets/images/logo.png') }}" alt=""></div>
+            <div class="flex-grow-1"></div>
+            <div class="w-100 mb-4">
+                <a class="btn btn-outline-primary btn-block btn-icon-text btn-rounded" href="{{ route('login') }}"><i class="i-Mail-with-At-Sign"></i> {{ 'Sign in with Email' }}</a>
             </div>
+            <div class="flex-grow-1"></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="p-4">
+            <h1 class="mb-3 text-18">{{ __('Reset Password') }}</h1>
+            <form   wire:submit.prevent="resetUser">
+                @foreach($fields as $field)
+                    @if($field->view)
+                        @include($field->view)
+                    @else
+                        @include(form_views_fields($field->type))
+                    @endif
+                @endforeach
+                <button class="btn btn-primary btn-block btn-rounded mt-3" type="submit">{{ __('Confirm Password') }}</button>
+            </form>
         </div>
     </div>
 </div>
-@endsection

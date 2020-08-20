@@ -12,9 +12,9 @@ Route::group([
     \Illuminate\Support\Facades\Route::group([
         'middleware'=>'guest'
     ], function(){
-        Route::livewire('login', 'admin.auth.login-form')->name('login');
-        Route::livewire('register', 'admin.auth.register-form')->name('register');
-        Route::livewire('password/request', 'admin.auth.request-form')->name('password.request');
-        Route::livewire('password/reset', 'admin.auth.reset-form')->name('password.reset');
+        Route::livewire('login', 'admin.auth.login-form')->name('login')->layout('layouts.auth');
+        Route::livewire('register', 'admin.auth.register-form')->name('register')->layout('layouts.auth');
+        Route::livewire('password/request', 'admin.auth.request-form')->name('password.request')->layout('layouts.auth');
+        Route::livewire('password/reset', 'admin.auth.reset-form')->name('password.reset')->layout('layouts.auth');
     });
 });

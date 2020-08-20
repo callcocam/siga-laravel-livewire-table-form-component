@@ -87,6 +87,6 @@ return [
     | its offering, you may disable the provided migrations for your own.
     */
 
-    'migrate' => true,
+    'migrate' => false,
 
 ];

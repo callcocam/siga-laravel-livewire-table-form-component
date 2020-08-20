@@ -1,4 +1,4 @@
-@if($confirming===$model->id)
+@if($confirming==$model->id)
     <button type="button"
     @foreach ($attributes as $key => $value)
         {{ $key }}="{{ $value }}"

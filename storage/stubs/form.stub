@@ -26,9 +26,9 @@ class DummyComponent extends FormComponent
 
     public function fields()
     {
-        return [
-            FieldComponent::make('Name')->input()->rules('required'),
-        ];
+        $this->form=[];
+        $this->form[]=  FieldComponent::make('Name')->input()->rules('required');
+        return $this->form;
     }
     public function route(){
         return "DummyRoute";

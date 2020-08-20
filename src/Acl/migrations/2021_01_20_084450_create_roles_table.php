@@ -20,7 +20,7 @@ class CreateRolesTable extends Migration
             $table->string('name', 255)->unique();
             $table->string('slug', 255)->unique();
             $table->enum('special', ['no-access','all-access','no-defined']);
-            $table->enum('status', ['deleted','draft','published']);
+            $table->enum('status', ['deleted','draft','published'])->default('published');
             $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();

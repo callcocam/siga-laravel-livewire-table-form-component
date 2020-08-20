@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreatePermissionsTable extends Migration
+class CreateTenantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,30 +13,22 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        $name = config('acl.tables.permissions');
-
-        Schema::create($name, function (Blueprint $table) {
+        Schema::create('tenants', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('tenant_id')->nullable();
             $table->string('name', 255)->unique();
-            $table->string('slug', 255)->unique();
             $table->enum('status', ['deleted','draft','published'])->default('published');
-            $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('CASCADE');
         });
     }
 
     /**
-     * Reverse the migration.
+     * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        $name = config('acl.tables.permissions');
-
-        Schema::drop($name);
+        Schema::dropIfExists('tenants');
     }
 }

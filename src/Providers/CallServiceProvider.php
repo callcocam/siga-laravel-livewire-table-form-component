@@ -49,6 +49,7 @@ class CallServiceProvider extends ServiceProviderAlias
         }
         $this->mapMenus();
         $this->loadPublish();
+        $this->installScaffolding();
         if ($this->app->runningInConsole()) {
             $this->commands([MakeCrud::class]);
             $this->commands([MakeRoute::class]);
@@ -98,9 +99,46 @@ class CallServiceProvider extends ServiceProviderAlias
             __DIR__.'/../../resources' => resource_path()
         ],'lw-call-views');
 
+
+        $this->publishes([
+            __DIR__.'/../../resources/sass' => resource_path("sass")
+        ],'lw-call-views-sass');
+
+        $this->publishes([
+            __DIR__.'/../../resources/js' => resource_path("js")
+        ],'lw-call-views-js');
+
         $this->publishes([
             __DIR__.'/../../package.json' => base_path('package.json')
-        ],'lv-call-package');
+        ],'lw-call-package');
 
+        $this->publishes([
+            __DIR__.'/../../dist-assets' => public_path('dist-assets'),
+        ], 'lw-call-assets');
+
+        $this->publishMigrations();
+    }
+
+    /**
+     * Publish the migration files.
+     *
+     * @return void
+     */
+    protected function installScaffolding()
+    {
+        $this->publishes([
+            __DIR__.'/../../scaffolding/Livewire/' => app_path('Http/Livewire'),
+        ], 'lw-call-scaffolding');
+    }
+    /**
+     * Publish the migration files.
+     *
+     * @return void
+     */
+    protected function publishMigrations()
+    {
+        $this->publishes([
+            __DIR__.'/../../database/' => database_path(),
+        ], 'lw-call-migrations');
     }
 }

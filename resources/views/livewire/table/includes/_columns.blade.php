@@ -13,7 +13,6 @@ id="{{ $this->setTableHeadId($column->attribute) }}"
 @if($column->sortable)
 <span style="cursor: pointer;" wire:click="sort('{{ $column->attribute }}')">
         {{ $column->text }}
-
     @if ($sortField !== $column->attribute)
         <i class="text-muted fas fa-sort"></i>
     @elseif ($sortDirection === 'asc')
