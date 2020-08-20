@@ -63,5 +63,9 @@ class MakeInstall extends AbstractCommand
             '--tag' => 'lw-call-routes'
         ]);
 
+        if(!config('lw-call.tenant', false)){
+           unlink(app_path('Tenant.php'));
+        }
+
     }
 }
