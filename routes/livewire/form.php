@@ -4,4 +4,3 @@ Route::group(['middleware' => 'web'], function () {
         return call_user_func([request()->input('component'), 'fileUpload']);
     })->name('lw-forms.file-upload');
 });
-

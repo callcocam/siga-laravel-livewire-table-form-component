@@ -16,7 +16,6 @@ use Call\LavewireNotify\NotifyServiceProvider;
 use Call\LivewireAlert\LivewireAlertServiceProvider;
 use Call\MigrationsGenerator\MigrationsGeneratorServiceProvider;
 use Call\Suports\Tenant\TenantServiceProvider;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as ServiceProviderAlias;
@@ -41,7 +40,7 @@ class CallServiceProvider extends ServiceProviderAlias
 
     public function boot(){
 
-        $this->mergeConfigFrom(__DIR__ . '/../../config/call.php', 'lw-call');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/lw-call.php', 'lw-call');
         if(config('lw-call.routes', false)){
 
             $this->mapWebRoutes();
@@ -62,7 +61,6 @@ class CallServiceProvider extends ServiceProviderAlias
     protected $dependencies;
     protected function mapMenus(){
 
-
         collect(glob(app_path('Http/Livewire/Menus/*.php')))
             ->each(function($path) {
                 $fileName = File::name($path);
@@ -70,32 +68,46 @@ class CallServiceProvider extends ServiceProviderAlias
             });
 
         view()->share('menus',  $this->dependencies);
-
     }
     protected function mapWebRoutes()
     {
         Route::middleware('web')
             ->namespace("App\Http\Controllers")
-            ->group( __DIR__.'/../../routes/call.php');
+            ->group( __DIR__.'/../../routes/web.php');
     }
     protected function mapDynamicWebRoutes()
     {
         Route::middleware('web')
             ->group(function (){
-                collect(glob(app_path('Http/Livewire/routes/*.php')))
-                    ->each(function($path) {
-                        require $path;
+                Route::group([
+                    'prefix' => 'admin'
+                ], function () {
+                    Route::group([
+                        'middleware' => 'auth'
+                    ], function () {
+                        collect(glob(base_path('routes/livewire/auth/*.php')))
+                            ->each(function($path) {
+                                include_once $path;
+                            });
                     });
+                    \Illuminate\Support\Facades\Route::group([
+                        'middleware' => 'guest'
+                    ], function () {
+                        collect(glob(base_path('routes/livewire/guest/*.php')))
+                            ->each(function($path) {
+                                include_once $path;
+                            });
+                    });
+                });
             });
 
     }
 
-
     protected function loadPublish(){
 
         $this->publishes([
-            __DIR__.'/../../config/call.php' => config_path('call.php'), 'lw-call',
-        ]);
+            __DIR__.'/../../config/lw-call.php' => config_path('lw-call.php'),
+        ], 'lw-call');
 
         $this->publishes([
             __DIR__.'/../../resources' => resource_path()
@@ -117,6 +129,10 @@ class CallServiceProvider extends ServiceProviderAlias
         $this->publishes([
             __DIR__.'/../../dist-assets' => public_path('dist-assets'),
         ], 'lw-call-assets');
+
+        $this->publishes([
+            __DIR__.'/../../routes/livewire' => base_path('routes/livewire'),
+        ], 'lw-call-routes');
 
         $this->publishMigrations();
     }

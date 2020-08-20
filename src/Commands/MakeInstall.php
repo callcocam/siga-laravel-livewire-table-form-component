@@ -56,5 +56,12 @@ class MakeInstall extends AbstractCommand
             '--tag' => 'lw-call'
         ]);
 
+        File::ensureDirectoryExists(base_path('routes/livewire'));
+
+        $this->call('vendor:publish',[
+            '--force' => true,
+            '--tag' => 'lw-call-routes'
+        ]);
+
     }
 }
