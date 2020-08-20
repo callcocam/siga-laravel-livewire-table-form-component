@@ -240,7 +240,7 @@ abstract class FormComponent extends Component
     public function getFormDataKey($key){
 
         if(!$this->form_data)
-            $this->getFormData();
+            return null;
 
         if(isset($this->form_data[$key]))
             return $this->form_data[$key];
