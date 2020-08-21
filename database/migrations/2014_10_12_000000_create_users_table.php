@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('ie')->nullable()->unique();
             $table->string('rg')->nullable()->unique();
             $table->text('phone')->nullable();
+            $table->text('cover')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->enum('status', ['deleted','draft','published']);
