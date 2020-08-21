@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{ asset('dist-assets/css/themes/lite-purple.min.css') }}" rel="stylesheet">
     <link href="{{ asset('dist-assets/css/plugins/perfect-scrollbar.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('dist-assets/css/plugins/dropzone.min.css') }}" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @livewireStyles
     @notify_css
@@ -34,6 +35,8 @@
 <script src="{{ asset('dist-assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('dist-assets/js/scripts/script.min.js') }}"></script>
 <script src="{{ asset('dist-assets/js/scripts/sidebar.large.script.min.js') }}"></script>
+<script src="{{ asset('dist-assets/js/plugins/dropzone.min.js) }}"></script>
+<script src="{{ asset('dist-assets/js/scripts/dropzone.script.min.js) }}"></script>
 <script src="https://kit.fontawesome.com/f248d703d3.js" crossorigin="anonymous"></script>
 @livewireScripts
 @notify_js

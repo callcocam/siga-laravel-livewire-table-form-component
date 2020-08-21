@@ -34,6 +34,12 @@ class FieldComponent extends AbstractField
         return new static($label, $name);
     }
 
+    public function cover()
+    {
+       // $this->default = '/users/no_image.jpg';
+        $this->type = 'cover';
+        return $this;
+    }
     public function file()
     {
         $this->type = 'file';

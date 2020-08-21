@@ -14,8 +14,8 @@
     <div class="row mb-5">
         <div class="col-md-12">
            @include(alert_views())
-            @foreach($fields as $field)
-                @if(!$field->rendered)
+           @foreach($fields as $field)
+               @if(!$field->rendered)
                     @if($field->view)
                         @include(form_views($field->view))
                     @else
@@ -24,11 +24,15 @@
                 @endif
             @endforeach
             <div class="row">
+                <div class="col-md offset-md-2" style="text-align: center">
+                    <div wire:loading>
+                        Aguarde...
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md offset-md-2" style="text-align: end">
-                    <button class="btn btn-warning" wire:click="saveAndStay">{{ __('Save New') }}</button>
-                    <button class="btn btn-success" wire:click="saveAndGoBackResponse">{{ __('Save') }}</button>
-                    <button class="btn btn-primary" wire:click="saveAndGoBack">{{ __('Save & Go Back') }}</button>
-                    <button class="btn btn-danger" wire:click="GoBack">{{ __('Go Back') }}</button>
+                    <button class="btn btn-success" wire:click="saveAndGoBackResponse">{{ __('Edit Profile') }}</button>
                 </div>
             </div>
         </div>

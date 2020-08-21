@@ -6,12 +6,14 @@
  */
 namespace Call;
 
+use App\File;
 use Call\Suports\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 
 class AbstractModel extends Model
 {
 
+    protected $with = ['file'];
     public function getSlugOptions()
     {
         if (is_string($this->slugTo())) {
@@ -33,5 +35,18 @@ class AbstractModel extends Model
     protected  function slugFrom()
     {
         return 'name';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function file()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
+    public function getFileAttribute(){
+
+
     }
 }

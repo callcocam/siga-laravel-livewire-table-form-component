@@ -25,7 +25,6 @@ abstract class FormComponent extends Component
     protected $messagesUpdate="Record updated successfully :)";
     protected $messages;
     protected $model;
-    public $form =[];
     public $datList =[];
     public $form_data;
     private static $storage_disk;
@@ -39,6 +38,7 @@ abstract class FormComponent extends Component
 
         if ($model){
             $this->model = $model;
+
             $this->form_data = $this->model->toArray();
         }
 
@@ -127,8 +127,10 @@ abstract class FormComponent extends Component
         if($this->getId()){
             try{
                 $this->model = $this->query()->where('id',$this->getId())->first();
+
                 $this->model->update($this->getFillable());
                 $this->result = true;
+                //$this->saveUpload();
                 $this->alert($this->messagesUpdate);
                 //notify()->success($this->messagesUpdate);
             }
@@ -142,6 +144,7 @@ abstract class FormComponent extends Component
             try{
                 $this->model = $this->query()->create($this->getFillable());
                 $this->result = true;
+               //$this->saveUpload();
                 //notify()->success($this->messagesCreate);
                 $this->alert($this->messagesCreate);
             }

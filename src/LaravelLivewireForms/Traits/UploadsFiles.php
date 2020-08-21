@@ -75,4 +75,28 @@ trait UploadsFiles
 
         return (isset($icons[$mime_group])) ? $icons[$mime_group] : 'fa-file';
     }
+
+    /*protected function saveUpload(){
+
+        if($this->form_data):
+            foreach ($this->form_data as $key => $file):
+                if(in_array($key, $this->covers)){
+                    $this->saveFileUpload($file);
+                }
+            endforeach;
+        endif;
+    }
+
+    protected function saveFileUpload($file){
+        $fileExist = $this->model->file();
+        if ($fileExist->first()) :
+            $fileExist->update([
+                'name' =>$file
+            ]);
+        else :
+            $fileExist->create([
+                'name' => $file
+            ]);
+        endif;
+    }*/
 }
