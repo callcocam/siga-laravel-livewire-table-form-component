@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 class Item
 {
+    use CallRoute;
+
     public $label;
     protected $icon = "i-Arrow-Forward-2";
     protected $route;

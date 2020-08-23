@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Route;
 
 class Menu
 {
+    use CallRoute;
 
     protected $items = [];
     protected $label;
     protected $icon = "i-Arrow-Forward-2";
     protected $route;
+    protected $sorting = 0;
 
     /**
      * Menu constructor.
@@ -90,6 +92,10 @@ class Menu
         return "#";
     }
 
+    public function sort($sort){
+        $this->sorting = $sort;
+        return $this;
+    }
 
     public function isMenu()
     {

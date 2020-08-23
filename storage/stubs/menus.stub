@@ -15,7 +15,13 @@ class DummyMenuMenu extends AbstractMenu
 
              $this->add(
                  \Call\Menus\Menu::meke("DummyModel")
-                     ->add(\Call\Menus\Item::make("List DummyMenus")->route('admin.DummyRoutes.index'))
+                     ->add(\Call\Menus\Item::make("List DummyMenus")
+                     ->route('DummyApp.DummyRoutes.index')
+                     ->index('DummyRoutes', 'DummyApp.DummyModel.DummyRoute-table','DummyApp.DummyRoutes.index')
+                     ->create('DummyRoutes','DummyApp.DummyModel.DummyRoute-form','DummyApp.DummyRoutes.create')
+                     ->edit('DummyRoutes','DummyApp.DummyModel.DummyRoute-form','DummyApp.DummyRoutes.edit')
+                     ->show('DummyRoutes','DummyApp.DummyModel.DummyRoute-show','DummyApp.DummyRoutes.show')
+                     )
                  );
         }
 }

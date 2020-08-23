@@ -16,6 +16,7 @@ use Call\LavewireNotify\NotifyServiceProvider;
 use Call\LivewireAlert\LivewireAlertServiceProvider;
 use Call\MigrationsGenerator\MigrationsGeneratorServiceProvider;
 use Call\Suports\Tenant\TenantServiceProvider;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as ServiceProviderAlias;
@@ -41,12 +42,9 @@ class CallServiceProvider extends ServiceProviderAlias
     public function boot(){
 
         $this->mergeConfigFrom(__DIR__ . '/../../config/lw-call.php', 'lw-call');
-        if(config('lw-call.routes', false)){
 
-            $this->mapWebRoutes();
-            $this->mapDynamicWebRoutes();
+        $this->loadViewsFrom(__DIR__.'/../../resources/views','lw-call-views');
 
-        }
         $this->mapMenus();
         $this->loadPublish();
         $this->installScaffolding();
@@ -64,43 +62,20 @@ class CallServiceProvider extends ServiceProviderAlias
         collect(glob(app_path('Http/Livewire/Menus/*.php')))
             ->each(function($path) {
                 $fileName = File::name($path);
-                $this->dependencies[] = app(sprintf("\\App\\Http\\Livewire\\Menus\\%s", $fileName))->getMenus();
+                $menus = app(sprintf("\\App\\Http\\Livewire\\Menus\\%s", $fileName))->getMenus();
+                $this->dependencies[] = $menus;
             });
 
-        view()->share('menus',  $this->dependencies);
+        view()->share('menus',   collect($this->dependencies)->sortBy(function ($dependency){
+            return $dependency->sorting;
+        }));
     }
+
     protected function mapWebRoutes()
     {
         Route::middleware('web')
             ->namespace("App\Http\Controllers")
             ->group( __DIR__.'/../../routes/web.php');
-    }
-    protected function mapDynamicWebRoutes()
-    {
-        Route::middleware('web')
-            ->group(function (){
-                Route::group([
-                    'prefix' => 'admin'
-                ], function () {
-                    Route::group([
-                        'middleware' => 'auth'
-                    ], function () {
-                        collect(glob(base_path('routes/livewire/auth/*.php')))
-                            ->each(function($path) {
-                                include_once $path;
-                            });
-                    });
-                    \Illuminate\Support\Facades\Route::group([
-                        'middleware' => 'guest'
-                    ], function () {
-                        collect(glob(base_path('routes/livewire/guest/*.php')))
-                            ->each(function($path) {
-                                include_once $path;
-                            });
-                    });
-                });
-            });
-
     }
 
     protected function loadPublish(){

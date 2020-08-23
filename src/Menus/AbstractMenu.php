@@ -8,6 +8,7 @@ abstract class AbstractMenu
 {
 
     protected $menus;
+    protected $sorting = 0;
 
     /**
      * @param Menu $menu
@@ -20,5 +21,10 @@ abstract class AbstractMenu
     public function getMenus(){
 
         return $this->menus;
+    }
+
+    public function sort($sort){
+
+        return $this->sorting;
     }
 }

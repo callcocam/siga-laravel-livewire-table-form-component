@@ -1,5 +1,32 @@
 <?php
 
+if (!function_exists('get_tenant_id')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param  string $path
+     * @return string
+     */
+    function get_tenant_id($tenant = 'tenant_id')
+    {
+        $tenantId = \Call\Suports\Tenant\Facades\Tenant::getTenantId($tenant);
+        return $tenantId;
+    }
+}
+
+if (!function_exists('get_tenant')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param  string $path
+     * @return Tenant
+     */
+    function get_tenant()
+    {
+        return \Illuminate\Support\Facades\DB::table('tenants')->where('id', get_tenant_id())->first();
+    }
+}
+
 if(!function_exists('call_migration_generate_path')){
 
     function call_migration_generate_path($path =""){
@@ -13,12 +40,21 @@ if(!function_exists('form_row')){
     }
 }
 
+if(!function_exists('call_views')){
+
+    function call_views($view){
+        return sprintf("lw-call-views::livewire.%s", $view);
+    }
+}
+
+
 if(!function_exists('table_views')){
 
     function table_views($view){
         return sprintf("lw-tables-views::%s", $view);
     }
 }
+
 if(!function_exists('table_views_includes')){
 
     function table_views_includes($view){

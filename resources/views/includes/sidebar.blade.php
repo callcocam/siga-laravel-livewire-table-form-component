@@ -34,6 +34,9 @@
             <li class="nav-item"><a class="nav-item-hold" href="{{ route('profile') }}"><i class="nav-icon i-Find-User"></i><span class="nav-text">{{ __('Profile') }}</span></a>
                 <div class="triangle"></div>
             </li>
+            <li class="nav-item"><a class="nav-item-hold" href="{{ route('icones') }}"><i class="nav-icon i-Search-on-Cloud"></i><span class="nav-text">{{ __('Icons') }}</span></a>
+                <div class="triangle"></div>
+            </li>
             <li class="nav-item"><a class="nav-item-hold" href="{{ route('logout') }}"><i class="nav-icon i-Unlock"></i><span class="nav-text">{{ __('Logout') }}</span></a>
                 <div class="triangle"></div>
             </li>

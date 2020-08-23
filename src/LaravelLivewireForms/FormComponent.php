@@ -27,6 +27,7 @@ abstract class FormComponent extends Component
     protected $model;
     public $datList =[];
     public $form_data;
+    public $form = [];
     private static $storage_disk;
     private static $storage_path;
 

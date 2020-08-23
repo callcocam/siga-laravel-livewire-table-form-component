@@ -32,7 +32,12 @@ trait UploadsFiles
     {
         foreach ($this->fields() as $field) {
             if ($field->name == $field_name) {
-                $value = $field->file_multiple ? array_merge($this->form_data[$field_name], $uploaded_files) : $uploaded_files;
+                if($this->form_data[$field_name]){
+                    $value = $field->file_multiple ? array_merge($this->form_data[$field_name], $uploaded_files) : $uploaded_files;
+                }
+                else{
+                    $value =  $uploaded_files;
+                }
                 break;
             }
         }
