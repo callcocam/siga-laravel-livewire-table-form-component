@@ -13,7 +13,7 @@ class LoadRouterHelper
     /**
      * @var array
      */
-    private $ignore = ['auth', 'store', 'remove-file', 'auto-route', 'translate', 'profile', 'roles', 'permissions'];
+    private $ignore = ['debugbar','auth',  'remove-file', 'auto-route', 'translate', 'profile', 'roles', 'permissions'];
 
     /**
      * @var array

@@ -62,20 +62,16 @@ class CallServiceProvider extends ServiceProviderAlias
         collect(glob(app_path('Http/Livewire/Menus/*.php')))
             ->each(function($path) {
                 $fileName = File::name($path);
-                $menus = app(sprintf("\\App\\Http\\Livewire\\Menus\\%s", $fileName))->getMenus();
-                $this->dependencies[] = $menus;
+                $menu = app(sprintf("\\App\\Http\\Livewire\\Menus\\%s", $fileName));
+                if($menu->isShow()){
+                    $menus = $menu->getMenus();
+                    $this->dependencies[] = $menus;
+                }
             });
 
         view()->share('menus',   collect($this->dependencies)->sortBy(function ($dependency){
             return $dependency->sorting;
         }));
-    }
-
-    protected function mapWebRoutes()
-    {
-        Route::middleware('web')
-            ->namespace("App\Http\Controllers")
-            ->group( __DIR__.'/../../routes/web.php');
     }
 
     protected function loadPublish(){

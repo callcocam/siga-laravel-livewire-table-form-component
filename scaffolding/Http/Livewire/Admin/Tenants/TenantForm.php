@@ -27,9 +27,9 @@ class TenantForm extends FormComponent
     public function fields()
     {
         return [
-            FieldComponent::make('id')->input('hidden')->view("lw-forms::fields.hidden"),
+            FieldComponent::make('id')->hidden(),
             FieldComponent::make('Name')->input()->rules('required'),
-            FieldComponent::make('Cover')->file()->rules('required'),
+            FieldComponent::make('Cover')->file()->rules('required')->multiple(),
             FieldComponent::make('Email')->input()->rules('required'),
         ];
     }

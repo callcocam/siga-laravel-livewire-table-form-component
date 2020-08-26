@@ -23,9 +23,6 @@ class RoleTable extends TableComponent
     public function columns() : array
     {
         return [
-            Column::make('ID')
-                ->searchable()
-                ->sortable(),
             Column::make('Name')
                 ->searchable()
                 ->sortable(),

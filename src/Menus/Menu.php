@@ -66,7 +66,7 @@ class Menu
                 $permissions[] = $item->route;
             }
         }
-        return $permissions;
+        return array_filter($permissions);
     }
     public function all(){
 

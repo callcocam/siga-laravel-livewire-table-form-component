@@ -23,6 +23,7 @@ class UserForm extends FormComponent
 
     public function mount(User $model = null)
     {
+        $model->append('access');
         $this->setFormProperties($model);
     }
 
@@ -34,18 +35,26 @@ class UserForm extends FormComponent
         else{
             unset($this->form_data['password']);
         }
-        return parent::success();
+        parent::success();
+        if($this->result){
+            if(isset($this->form_data['access']) && $this->form_data['access']){
+                $this->model->roles()->sync(array_values($this->form_data['access']));
+            }
+        }
+
     }
 
     public function fields()
     {
         $roles = Role::orderBy('name')->get()->pluck('id', 'name')->all();
+
         return [
             FieldComponent::make('id')->input('hidden')->view('fields.hidden'),
+            FieldComponent::make('Cover')->cover(),
             FieldComponent::make('Name')->input()->rules(['required', 'string', 'max:255']),
             FieldComponent::make('Email')->input('email')
                 ->rules(['required', 'string', 'email', 'max:255', Rule::unique('users','email')->ignore($this->getId())]),
-            FieldComponent::make('Roles', 'roles')->checkboxes($roles)->help('Please select a roles.'),
+            FieldComponent::make('Roles', 'access')->checkboxes($roles)->default($this->form_data['access'])->help('Please select a roles.'),
             FieldComponent::make('Password')->input('password'),
             FieldComponent::make('Description')->textarea(5),
         ];

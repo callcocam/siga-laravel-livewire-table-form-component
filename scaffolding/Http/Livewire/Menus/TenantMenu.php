@@ -32,9 +32,6 @@ class TenantMenu extends AbstractMenu
                     ->create('companies','admin.tenants.company-form','admin.companies.create')
                     ->edit('companies','admin.tenants.company-form','admin.companies.edit')
                     ->show('companies','admin.tenants.company-show','admin.companies.show'))
-
-                ->add(\Call\Menus\Item::make("List Icons")->icon('i-Gears')->route('admin.icons.index')
-                    ->index('icones', 'admin.utils.icons','admin.icons.index'))->sort(1)
         );
     }
 }

@@ -3,7 +3,6 @@
         <h1>{{ __($this->title()) }}</h1>
         <ul>
             <li><a href="{{ route('admin') }}">{{ __('Painel') }}</a></li>
-            <li><a href="{{ $this->BackList() }}">{{ __($this->title()) }}</a></li>
             @if($this->subtitle())
             <li><a href="">{{ $this->subtitle() }}</a></li>
             @endif
@@ -24,9 +23,9 @@
                 @endif
             @endforeach
             <div class="row">
-                <div class="col-md offset-md-2" style="text-align: center">
+                <div class="col-md offset-md-2"  style="text-align: center">
                     <div wire:loading>
-                        Aguarde...
+                        <livewire:admin.utils.loading class="mr-2" />
                     </div>
                 </div>
             </div>
@@ -38,4 +37,6 @@
         </div>
     </div>
 </div>
-@include(form_views('scripts'))
+@include(form_views('scripts'), [
+    'component'=>get_class($this)
+])

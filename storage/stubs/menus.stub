@@ -21,7 +21,7 @@ class DummyMenuMenu extends AbstractMenu
                      ->create('DummyRoutes','DummyApp.DummyModel.DummyRoute-form','DummyApp.DummyRoutes.create')
                      ->edit('DummyRoutes','DummyApp.DummyModel.DummyRoute-form','DummyApp.DummyRoutes.edit')
                      ->show('DummyRoutes','DummyApp.DummyModel.DummyRoute-show','DummyApp.DummyRoutes.show')
-                     )
+                     )->sort(10)
                  );
         }
 }

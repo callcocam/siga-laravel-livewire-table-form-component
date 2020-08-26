@@ -7,7 +7,7 @@
             file.addEventListener('input', event => {
                 console.log(event)
                 let form_data = new FormData();
-                form_data.append('component', @json(get_class($this)));
+                form_data.append('component', @json($component));
                 form_data.append('field_name', file.id);
                 for (let i = 0; i < event.target.files.length; i++) {
                     form_data.append('files[]', event.target.files[i]);
@@ -18,6 +18,13 @@
                     window.livewire.emit('fileUpdate', response.data.field_name, response.data.uploaded_files);
                 });
             })
+        });
+        document.addEventListener("livewire:load", function(event) {
+             window.livewire.hook('afterDomUpdate', () => {
+                setTimeout(()=>{
+                    $('.close').click()
+                }, 5000)
+            });
         });
     </script>
 @endpush

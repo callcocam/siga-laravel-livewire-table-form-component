@@ -21,7 +21,7 @@ abstract class AbstractPermission extends AbstractModel implements PermissionCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'description'];
+    protected $fillable = ['name','name', 'slug','grupo', 'description'];
 
     /**
      * Create a new Permission instance.

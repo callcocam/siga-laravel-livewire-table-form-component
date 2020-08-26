@@ -17,6 +17,7 @@ class FieldComponent extends AbstractField
     protected $key;
     protected $file_multiple;
     protected $array_fields = [];
+    protected $child_fields = [];
     protected $array_sortable = false;
 
     public function __construct($label, $name)
@@ -56,6 +57,14 @@ class FieldComponent extends AbstractField
     {
         $this->type = 'array';
         $this->array_fields = $fields;
+        return $this;
+    }
+
+
+    public function child($fields = [])
+    {
+        $this->type = 'child';
+        $this->child_fields = $fields;
         return $this;
     }
 

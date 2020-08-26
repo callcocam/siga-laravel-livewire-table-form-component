@@ -32,12 +32,7 @@ trait UploadsFiles
     {
         foreach ($this->fields() as $field) {
             if ($field->name == $field_name) {
-                if($this->form_data[$field_name]){
-                    $value = $field->file_multiple ? array_merge($this->form_data[$field_name], $uploaded_files) : $uploaded_files;
-                }
-                else{
-                    $value =  $uploaded_files;
-                }
+                $value = $field->file_multiple ? array_merge($this->form_data[$field_name], $uploaded_files) : $uploaded_files;
                 break;
             }
         }
@@ -80,28 +75,4 @@ trait UploadsFiles
 
         return (isset($icons[$mime_group])) ? $icons[$mime_group] : 'fa-file';
     }
-
-    /*protected function saveUpload(){
-
-        if($this->form_data):
-            foreach ($this->form_data as $key => $file):
-                if(in_array($key, $this->covers)){
-                    $this->saveFileUpload($file);
-                }
-            endforeach;
-        endif;
-    }
-
-    protected function saveFileUpload($file){
-        $fileExist = $this->model->file();
-        if ($fileExist->first()) :
-            $fileExist->update([
-                'name' =>$file
-            ]);
-        else :
-            $fileExist->create([
-                'name' => $file
-            ]);
-        endif;
-    }*/
 }

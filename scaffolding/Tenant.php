@@ -24,4 +24,25 @@ class Tenant extends AbstractModel
     protected $fillable = [
         'name', 'status'
     ];
+
+
+    public function company()
+    {
+
+        return $this->belongsTo(Company::class)->select(['id', 'name','fantasy','slug','email','document','ie','phone','site','cover','status', 'description']);
+    }
+
+
+
+    public function getAddressAttribute()
+    {
+
+        return $this->company()->with('address')->first();
+    }
+
+    public function getCompanyAttribute()
+    {
+
+        return $this->belongsTo(Company::class)->first();
+    }
 }

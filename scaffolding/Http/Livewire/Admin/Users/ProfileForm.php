@@ -7,6 +7,8 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\User;
+use Call\LaravelLivewireForms\Fields\Component\ArrayComponent;
+use Call\LaravelLivewireForms\Fields\Component\ChildComponent;
 use Call\LaravelLivewireForms\FormComponent;
 use Call\LaravelLivewireForms\Fields\Component\FieldComponent;
 use Illuminate\Support\Facades\Hash;
@@ -27,6 +29,9 @@ class ProfileForm extends FormComponent
     public function mount(User $model = null)
     {
         $profile = $model->find(auth()->id());
+
+        $profile->append('address');
+
         $this->setFormProperties( $profile );
     }
 
@@ -38,7 +43,16 @@ class ProfileForm extends FormComponent
         else{
             unset($this->form_data['password']);
         }
-        return parent::success();
+        parent::success();
+
+        if($this->result){
+            if(isset($this->form_data['address']) && $this->form_data['address']){
+
+                $this->form_data['address'] = $this->saveChild($this->model->address(), $this->form_data['address']);
+
+            }
+        }
+
     }
 
     public function fields()
@@ -51,7 +65,7 @@ class ProfileForm extends FormComponent
             'Jurídica'=>'cnpj',
         ])->rules('required');
 
-        $data_fields['cover'] = FieldComponent::make('Cover')->multiple()->cover();
+        $data_fields['cover'] = FieldComponent::make('Cover')->cover();
         $data_fields[] = FieldComponent::make('Name')->input()->rules('required');
         if($this->getFormDataKey('type')){
             if($this->getFormDataKey('type') == 'cnpj'){
@@ -70,11 +84,20 @@ class ProfileForm extends FormComponent
             $data_fields[] = FieldComponent::make('rg')->input();
         }
         $data_fields[] = FieldComponent::make('E-Mail','email')->input();
+        $data_fields[] = FieldComponent::make('Password')->input('password');
         $data_fields[] = FieldComponent::make('Telefone','phone')->input();
-        $data_fields[] = FieldComponent::make('Status')->default('published')->radio([
-            'Publicado'=>'published',
-            'Rascunho'=>'draft',
-        ])->rules('required');
+        $data_fields[] = FieldComponent::make('Endereço Completo','address')->child([
+            ChildComponent::make('id')->hidden(),
+            ChildComponent::make('slug')->hidden(),
+            ChildComponent::make('name')->input()->rules('required'),
+            ChildComponent::make('Street')->input(),
+            ChildComponent::make('District')->input(),
+            ChildComponent::make('Number')->input(),
+            ChildComponent::make('Zip')->input(),
+            ChildComponent::make('City')->input(),
+            ChildComponent::make('State')->input(),
+            ChildComponent::make('Complement')->input(),
+        ]);
         $data_fields[] = FieldComponent::make('description')->textarea();
 
         return $data_fields;

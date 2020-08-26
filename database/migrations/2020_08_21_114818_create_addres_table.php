@@ -33,7 +33,6 @@ class CreateAddresTable extends Migration
             $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
-            $table->unique(['tenant_id','slug']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('CASCADE');
         });

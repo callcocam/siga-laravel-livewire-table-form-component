@@ -159,6 +159,31 @@ abstract class FormComponent extends Component
 
     }
 
+    public function saveChild($model, $data)
+    {
+
+      if(isset($data['id']) && $data['id']){
+            try{
+                $model->update($this->getFillable($model,$data));
+                return $model->first();
+            }
+            catch (\PDOException $PDOException){
+               $this->error($PDOException->getMessage());
+            }
+        }
+        else{
+            try{
+                $model->create($this->getFillable($model,$data));
+                return $model->first();
+            }
+            catch (\PDOException $PDOException){
+                $this->error($PDOException->getMessage());
+            }
+
+        }
+
+    }
+
     public function saveAndStay()
     {
         $this->submit();
@@ -295,13 +320,18 @@ abstract class FormComponent extends Component
         return $this;
     }
 
-    protected function getFillable(){
+    protected function getFillable($model=null, $data=null){
         $field_names = [];
-        foreach ($this->query()->getModel()->getFillable() as $field) {
-            if(isset($this->form_data[$field]))
-                $field_names[$field] = $this->form_data[$field];
-        }
+        if(is_null($model))
+            $model = $this->query();
 
+        if(is_null($data))
+            $data = $this->form_data;
+
+        foreach ($model->getModel()->getFillable() as $field) {
+            if(isset($data[$field]))
+                $field_names[$field] = $data[$field];
+        }
         return $field_names;
     }
 

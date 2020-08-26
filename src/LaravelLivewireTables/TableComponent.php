@@ -19,6 +19,8 @@ use Call\LaravelLivewireTables\Traits\{Foreign,
     Sorting,
     Table};
 use Illuminate\Database\Eloquent\Builder;
+use Gate;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -77,6 +79,11 @@ abstract class TableComponent extends Component
         $this->setTranslationStrings();
     }
 
+    public function mount(){
+        if(Gate::denies(Route::currentRouteName())){
+            return redirect()->to('admin');
+        }
+    }
     /**
      * Sets the initial translations of these items.
      */
@@ -114,6 +121,9 @@ abstract class TableComponent extends Component
      */
     public function render(): View
     {
+        if(Gate::denies(Route::currentRouteName())){
+            return view(table_views('table-component-restrict'));
+        }
         $model = null;
         if($this->paginationEnabled)
             $model = $this->models()->paginate($this->perPage);

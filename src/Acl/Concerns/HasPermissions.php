@@ -7,7 +7,6 @@
 namespace Call\Acl\Concerns;
 
 use Illuminate\Support\Arr;
-use Call\Acl\Facades\Acl;
 use Call\Acl\Contracts\Permission;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Call\Acl\Exceptions\PermissionNotFoundException;

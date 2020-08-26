@@ -41,6 +41,20 @@ abstract class AbstractRole extends AbstractModel implements RoleContract
 
         $this->slug = Str::slug($this->name);
     }
+
+    public function getAccessAttribute()
+    {
+
+        return $this->permissions()->pluck(  'id','name');
+    }
+
+    public function access()
+    {
+
+        return $this->permissions();
+    }
+
+
     /**
      * Roles can belong to many users.
      *

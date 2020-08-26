@@ -29,7 +29,6 @@ class PermissionForm extends FormComponent
     public function fields()
     {
         $routes = LoadRouterHelper::make();
-
         return [
             FieldComponent::make('Name')->input()->datalist($routes)->rules(['required', Rule::unique('permissions','name')->ignore($this->getId())]),
         ];

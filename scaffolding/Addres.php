@@ -9,12 +9,15 @@ namespace App;
 use Call\AbstractModel;
 use Call\Scopes\UuidGenerate;
 use Call\Suports\Sluggable\HasSlug;
+use Call\Suports\Tenant\BelongsToTenants;
 
 class Addres extends AbstractModel
 {
-    use UuidGenerate, HasSlug;
+    use UuidGenerate, HasSlug, BelongsToTenants;
 
     protected $keyType = "string";
+
+    protected $table = 'address';
 
     public $incrementing = false;
     /**
@@ -23,7 +26,7 @@ class Addres extends AbstractModel
      * @var array
      */
     protected $fillable =[
-        'user_id','slug','zip','city','state','country', 'street','district','number','complement','status', 'updated_at','created_at'
+        'user_id','name','slug','zip','city','state','country', 'street','district','number','complement','status', 'updated_at','created_at'
     ];
 
     public function addresable(){

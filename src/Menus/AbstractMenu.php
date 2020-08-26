@@ -7,6 +7,7 @@ namespace Call\Menus;
 abstract class AbstractMenu
 {
 
+    protected $show = true;
     protected $menus;
     protected $sorting = 0;
 
@@ -26,5 +27,16 @@ abstract class AbstractMenu
     public function sort($sort){
 
         return $this->sorting;
+    }
+
+    public function show($show){
+
+        $this->show = $show;
+
+        return $this;
+    }
+
+    public function isShow(){
+        return $this->show;
     }
 }

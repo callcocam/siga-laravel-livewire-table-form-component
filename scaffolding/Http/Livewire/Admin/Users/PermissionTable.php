@@ -23,11 +23,10 @@ class PermissionTable extends TableComponent
     public function columns() : array
     {
         return [
-            Column::make('ID')
+             Column::make('Name')
                 ->searchable()
                 ->sortable(),
-            Column::make('Name')
-                ->searchable()
+            Column::make('Grupo')
                 ->sortable(),
             Column::make('Actions')
                 ->addComponent(

@@ -47,4 +47,42 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime','cover' => 'array'
     ];
 
-   }
+    public function companies(){
+
+        return $this->belongsToMany(Company::class);
+
+    }
+
+    public function company(){
+
+        return $this->belongsTo(Company::class);
+
+    }
+
+    public function address()
+    {
+
+        return $this->morphOne(Addres::class, 'addresable')->select(['id', 'name', 'slug', 'zip', 'city', 'state', 'country', 'street', 'district', 'number', 'complement', 'status']);
+    }
+
+    public function getAddressAttribute()
+    {
+
+        return $this->address()->first();
+    }
+
+    public function getAccessAttribute()
+    {
+
+        return $this->roles()->pluck(  'id','name');
+    }
+
+    public function access()
+    {
+
+        return $this->roles();
+    }
+
+
+
+}

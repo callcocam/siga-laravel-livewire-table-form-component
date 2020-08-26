@@ -39,8 +39,8 @@
 <script src="{{ asset('dist-assets/js/scripts/dropzone.script.min.js) }}"></script>
 <script src="https://kit.fontawesome.com/f248d703d3.js" crossorigin="anonymous"></script>
 @livewireScripts
+@stack('scripts')
 @notify_js
 @notify_render
-@stack('scripts')
 </body>
 </html>

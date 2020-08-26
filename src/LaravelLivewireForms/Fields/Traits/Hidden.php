@@ -13,7 +13,7 @@ trait Hidden
     {
         $this->type = 'hidden';
         $this->input_type = 'hidden';
-        $this->view('fields.hidden');
+        $this->setIsShowLabel(false);
         return $this;
     }
 

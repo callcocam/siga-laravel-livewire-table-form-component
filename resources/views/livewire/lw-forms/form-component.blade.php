@@ -24,14 +24,24 @@
                 @endif
             @endforeach
             <div class="row">
+                <div class="col-md offset-md-2"  style="text-align: center">
+                    <div wire:loading>
+                        <livewire:admin.utils.loading class="mr-2" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md offset-md-2" style="text-align: end">
                     <button class="btn btn-warning" wire:click="saveAndStay">{{ __('Save New') }}</button>
                     <button class="btn btn-success" wire:click="saveAndGoBackResponse">{{ __('Save') }}</button>
                     <button class="btn btn-primary" wire:click="saveAndGoBack">{{ __('Save & Go Back') }}</button>
                     <button class="btn btn-danger" wire:click="GoBack">{{ __('Go Back') }}</button>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-@include(form_views('scripts'))
+@include(form_views('scripts'), [
+    'component'=>get_class($this)
+])

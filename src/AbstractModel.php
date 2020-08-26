@@ -7,13 +7,13 @@
 namespace Call;
 
 use App\File;
+use App\User;
 use Call\Suports\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 
 class AbstractModel extends Model
 {
 
-    protected $with = ['file'];
     public function getSlugOptions()
     {
         if (is_string($this->slugTo())) {
@@ -37,16 +37,8 @@ class AbstractModel extends Model
         return 'name';
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function file()
-    {
-        return $this->morphMany(File::class, 'fileable');
-    }
+    public function user(){
 
-    public function getFileAttribute(){
-
-
+        return $this->belongsTo(User::class);
     }
 }

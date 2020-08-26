@@ -85,6 +85,13 @@ if(!function_exists('form_views_arrays')){
     }
 }
 
+if(!function_exists('form_views_child')){
+
+    function form_views_child($view){
+        return form_views(sprintf("child-fields.%s", $view));
+    }
+}
+
 
 if(!function_exists('alert_views')){
 

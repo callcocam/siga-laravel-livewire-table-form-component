@@ -7,9 +7,11 @@
                     id="{{ $field->name . '.' . $loop->index }}"
                     type="checkbox"
                     class="form-check-input @error($field->key) is-invalid @enderror"
+                    @if(in_array($value, $field->default))
+                        checked
+                    @endif
                     value="{{ $value }}"
-                    wire:model.lazy="{{ $field->key }}">
-
+                    wire:model.lazy="{{ $field->key }}.{{$loop->index}}">
                 <label class="form-check-label" for="{{ $field->name . '.' . $loop->index }}">
                     {{ $label }}
                 </label>
