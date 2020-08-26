@@ -45,7 +45,9 @@ class CallServiceProvider extends ServiceProviderAlias
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views','lw-call-views');
 
-        $this->mapMenus();
+        if(config('lw-call.routes', false)){
+            $this->mapMenus();
+        }
         $this->loadPublish();
         $this->installScaffolding();
         if ($this->app->runningInConsole()) {
