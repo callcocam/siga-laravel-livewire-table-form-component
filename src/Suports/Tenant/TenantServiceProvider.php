@@ -45,9 +45,9 @@ class TenantServiceProvider extends ServiceProvider
                     $company = SIGATenant::find($tenant->id);
 
                     Tenant::addTenant("tenant_id", $tenant->id);
-
-                    if($company->companies){
-                        view()->share('tenant',  $company->companies);
+                    $companies = $company->company()->first();
+                    if($companies){
+                        view()->share('tenant',  $companies);
                     }
                 }
             }
