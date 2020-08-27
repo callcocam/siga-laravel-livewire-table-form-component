@@ -33,6 +33,11 @@ class Tenant extends AbstractModel
     }
 
 
+    public function companies()
+    {
+
+        return $this->hasOne(Company::class)->select(['id', 'name','fantasy','slug','email','document','ie','phone','site','cover','status', 'description']);
+    }
 
     public function getAddressAttribute()
     {
