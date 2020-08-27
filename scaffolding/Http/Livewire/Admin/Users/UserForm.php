@@ -29,6 +29,7 @@ class UserForm extends FormComponent
 
     public function success()
     {
+
         if(isset($this->form_data['password']) && $this->form_data['password']){
             $this->form_data['password'] = Hash::make($this->form_data['password']);
         }
@@ -38,7 +39,7 @@ class UserForm extends FormComponent
         parent::success();
         if($this->result){
             if(isset($this->form_data['access']) && $this->form_data['access']){
-                $this->model->roles()->sync(array_values($this->form_data['access']));
+                $this->model->roles()->sync(array_keys(array_filter($this->form_data['access'])));
             }
         }
 
@@ -47,7 +48,6 @@ class UserForm extends FormComponent
     public function fields()
     {
         $roles = Role::orderBy('name')->get()->pluck('id', 'name')->all();
-
         return [
             FieldComponent::make('id')->input('hidden')->view('fields.hidden'),
             FieldComponent::make('Cover')->cover(),

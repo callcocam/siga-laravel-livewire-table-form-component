@@ -23,7 +23,7 @@ class RoleForm extends FormComponent
         parent::success();
         if($this->result){
             if(isset($this->form_data['access']) && $this->form_data['access']){
-                $this->model->permissions()->sync(array_values($this->form_data['access']));
+                $this->model->permissions()->sync(array_keys(array_filter($this->form_data['access'])));
             }
         }
 
