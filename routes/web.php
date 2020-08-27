@@ -16,24 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::group([
-    'prefix' => 'admin'
-], function () {
-    Route::group([
-        'middleware' => 'auth'
-    ], function () {
-        collect(glob(base_path('routes/livewire/auth/*.php')))
-            ->each(function($path) {
-                include_once $path;
-            });
-    });
-    \Illuminate\Support\Facades\Route::group([
-        'middleware' => 'guest'
-    ], function () {
-        collect(glob(base_path('routes/livewire/guest/*.php')))
-            ->each(function($path) {
-                include_once $path;
-            });
-    });
-});
+Route::get('/home', 'HomeController@index')->name('home');
