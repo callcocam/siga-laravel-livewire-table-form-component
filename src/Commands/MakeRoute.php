@@ -46,6 +46,7 @@ class MakeRoute extends AbstractCommand
         $stub = File::get($this->getStub());
         $stub = str_replace('DummyApp', strtolower($app), $stub);
         $stub = str_replace('DummyMenu', $name, $stub);
+        $stub = str_replace('DummyModelCase', strtolower($menuName), $stub);
         $stub = str_replace('DummyModel', $menuName, $stub);
         $stub = str_replace('DummyRoute', strtolower($name), $stub);
         $path = app_path(sprintf('Http/Livewire/Menus/%sMenu.php', $name));

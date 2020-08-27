@@ -17,10 +17,10 @@ class DummyMenuMenu extends AbstractMenu
                  \Call\Menus\Menu::meke("DummyModel")
                      ->add(\Call\Menus\Item::make("List DummyMenus")
                      ->route('DummyApp.DummyRoutes.index')
-                     ->index('DummyRoutes', 'DummyApp.DummyModel.DummyRoute-table','DummyApp.DummyRoutes.index')
-                     ->create('DummyRoutes','DummyApp.DummyModel.DummyRoute-form','DummyApp.DummyRoutes.create')
-                     ->edit('DummyRoutes','DummyApp.DummyModel.DummyRoute-form','DummyApp.DummyRoutes.edit')
-                     ->show('DummyRoutes','DummyApp.DummyModel.DummyRoute-show','DummyApp.DummyRoutes.show')
+                     ->index('DummyRoutes', 'DummyApp.DummyModelCase.DummyRoute-table','DummyApp.DummyRoutes.index')
+                     ->create('DummyRoutes','DummyApp.DummyModelCase.DummyRoute-form','DummyApp.DummyRoutes.create')
+                     ->edit('DummyRoutes','DummyApp.DummyModelCase.DummyRoute-form','DummyApp.DummyRoutes.edit')
+                     ->show('DummyRoutes','DummyApp.DummyModelCase.DummyRoute-show','DummyApp.DummyRoutes.show')
                      )->sort(10)
                  );
         }
