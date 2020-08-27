@@ -19,7 +19,7 @@ class CreatePermissionsTable extends Migration
             $table->uuid('tenant_id')->nullable();
             $table->string('name', 255)->unique();
             $table->string('slug', 255)->unique();
-            $table->string('grupo')->after('slug')->nullable();
+            $table->string('grupo')->nullable();
             $table->enum('status', ['deleted','draft','published'])->default('published');
             $table->text('description')->nullable();
             $table->softDeletes();

@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
 
         $userSuper->companies()->sync($Company->id);
         $userAdmin->companies()->sync($Company->id);
+        $this->call(PermissionSeeder::class);
 
     }
 }
