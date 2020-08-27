@@ -27,6 +27,7 @@ class DummyComponent extends FormComponent
     public function fields()
     {
         $this->form=[];
+        $this->form[]=  FieldComponent::make('id')->hidden();
         $this->form[]=  FieldComponent::make('Name')->input()->rules('required');
         return $this->form;
     }
