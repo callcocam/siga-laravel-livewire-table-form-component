@@ -45,7 +45,7 @@ abstract class AbstractRole extends AbstractModel implements RoleContract
     public function getAccessAttribute()
     {
 
-        return $this->permissions()->pluck(  'id','name');
+        return $this->permissions()->pluck(  'name','id');
     }
 
     public function access()

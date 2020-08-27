@@ -5,13 +5,14 @@
             <div class="form-check">
                 <input
                     id="{{ $field->name . '.' . $loop->index }}"
+                    name="{{ $field->key }}"
                     type="checkbox"
                     class="form-check-input @error($field->key) is-invalid @enderror"
                     @if(in_array($value, $field->default))
                         checked
                     @endif
                     value="{{ $value }}"
-                    wire:model.lazy="{{ $field->key }}.{{$loop->index}}">
+                    wire:model.lazy="{{ $field->key }}.{{ $value }}">
                 <label class="form-check-label" for="{{ $field->name . '.' . $loop->index }}">
                     {{ $label }}
                 </label>
