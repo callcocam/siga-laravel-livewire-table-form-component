@@ -58,12 +58,12 @@ class Menu
     }
 
     public function permissions(){
-
-        $permissions[] = $this->route;
-
+        $permissions = [];
         if($this->items){
             foreach ($this->items as $item) {
-                $permissions[] = $item->route;
+                if(auth()->user()->can($item->route)):
+                    $permissions[] = $item->route;
+               endif;
             }
         }
         return array_filter($permissions);
@@ -100,6 +100,11 @@ class Menu
     public function isMenu()
     {
         return count($this->items()) <= 1;
+    }
+
+    public function name()
+    {
+        return $this->route;
     }
     public function __get($name)
     {

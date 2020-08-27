@@ -65,7 +65,10 @@ class Item
 
         return "#";
     }
+    public function name(){
 
+         return $this->route;
+    }
 
     public function __get($name)
     {
