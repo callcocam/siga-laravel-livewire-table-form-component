@@ -23,7 +23,7 @@
              window.livewire.hook('afterDomUpdate', () => {
                 setTimeout(()=>{
                     $('.close').click()
-                }, 5000)
+                }, 10000)
             });
         });
     </script>

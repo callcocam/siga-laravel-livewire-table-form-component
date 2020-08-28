@@ -199,13 +199,16 @@ abstract class FormComponent extends Component
 
     public function GoBackEdit()
     {
-        if($this->getId()) {
-            return redirect()->back()->withInput();
+        if($this->result){
+            if($this->getId()) {
+                return redirect()->back()->withInput();
+            }
+            if($this->model) {
+                return redirect()->route(sprintf('admin.%s.edit', $this->route()), $this->model->id);
+            }
+            return $this->GoBack();
         }
-        if($this->model) {
-            return redirect()->route(sprintf('admin.%s.edit', $this->route()), $this->model->id);
-        }
-        return $this->GoBack();
+        return redirect()->back()->withInput();
     }
 
 

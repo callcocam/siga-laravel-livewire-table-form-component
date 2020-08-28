@@ -10,9 +10,11 @@ use App\File;
 use App\User;
 use Call\Suports\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AbstractModel extends Model
 {
+    use SoftDeletes;
 
     public function getSlugOptions()
     {
