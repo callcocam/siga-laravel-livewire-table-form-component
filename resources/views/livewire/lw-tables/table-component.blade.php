@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class="breadcrumb">
-        <h1>{{ __('System') }}</h1>
+        <h1>@isset($tenant) {{ $tenant->name }} @else {{ __("System") }} @endisset</h1>
         <ul>
             <li><a href="{{ route('admin') }}">{{ __('Dashboard') }}</a></li>
             <li>{{ $this->getTitle() }}</li>
