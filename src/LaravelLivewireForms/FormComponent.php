@@ -143,7 +143,8 @@ abstract class FormComponent extends Component
         }
         else{
             try{
-                $this->model = $this->query()->create($this->getFillable());
+                $model = $this->query()->create($this->getFillable());
+                $this->model = $model->first();
                 $this->result = true;
                //$this->saveUpload();
                 //notify()->success($this->messagesCreate);
@@ -198,7 +199,13 @@ abstract class FormComponent extends Component
 
     public function GoBackEdit()
     {
-        return redirect()->back()->withInput();
+        if($this->getId()) {
+            return redirect()->back()->withInput();
+        }
+        if($this->model) {
+            return redirect()->route(sprintf('admin.%s.edit', $this->route()), $this->model->id);
+        }
+        return $this->GoBack();
     }
 
 

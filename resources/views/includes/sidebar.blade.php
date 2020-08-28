@@ -43,7 +43,7 @@
                                 @foreach($nenu->items() as $item)
                                     @can($item->name())
                                         <li class="nav-item">
-                                            <a class="nav-item-hold" href="{{  $item->isRoute() }}"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">{{ __($item->label)  }}</span></a>
+                                            <a class="nav-item-hold" href="{{  $item->isRoute() }}"><i class="nav-icon i-Arrow-Forward-2"></i><span class="nav-text">{{ __($item->label)  }}</span></a>
                                             <div class="triangle"></div>
                                         </li>
                                     @endcan
