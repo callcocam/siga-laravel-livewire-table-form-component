@@ -19,7 +19,7 @@ use Call\LaravelLivewireTables\Traits\{Foreign,
     Sorting,
     Table};
 use Illuminate\Database\Eloquent\Builder;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
