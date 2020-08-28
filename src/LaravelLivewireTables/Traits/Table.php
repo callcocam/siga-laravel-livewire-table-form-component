@@ -60,7 +60,7 @@ trait Table
      *
      * @return string|null
      */
-    public function getTitle(): ?string
+    public function getTitle()
     {
         return "Basic Table";
     }
@@ -70,7 +70,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableHeadClass($attribute): ?string
+    public function setTableHeadClass($attribute)
     {
         return null;
     }
@@ -80,7 +80,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableHeadId($attribute): ?string
+    public function setTableHeadId($attribute)
     {
         return null;
     }
@@ -90,7 +90,7 @@ trait Table
      *
      * @return array|null
      */
-    public function setTableHeadAttributes($attribute): array
+    public function setTableHeadAttributes($attribute)
     {
         return [];
     }
@@ -100,7 +100,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableRowClass($model): ?string
+    public function setTableRowClass($model)
     {
         return null;
     }
@@ -110,7 +110,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableRowId($model): ?string
+    public function setTableRowId($model)
     {
         return null;
     }
@@ -120,7 +120,7 @@ trait Table
      *
      * @return array
      */
-    public function setTableRowAttributes($model): array
+    public function setTableRowAttributes($model)
     {
         return [];
     }
@@ -131,7 +131,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableDataClass($attribute, $value): ?string
+    public function setTableDataClass($attribute, $value)
     {
         return null;
     }
@@ -142,7 +142,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableDataId($attribute, $value): ?string
+    public function setTableDataId($attribute, $value)
     {
         return null;
     }
@@ -153,7 +153,7 @@ trait Table
      *
      * @return array
      */
-    public function setTableDataAttributes($attribute, $value): array
+    public function setTableDataAttributes($attribute, $value)
     {
         return [];
     }
