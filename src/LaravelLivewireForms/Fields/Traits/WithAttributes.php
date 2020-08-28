@@ -17,6 +17,8 @@ trait WithAttributes
         foreach ($attributes as $key=>$value):
             $this->attribute($key, $value);
         endforeach;
+
+        return $this;
     }
 
 
@@ -24,5 +26,13 @@ trait WithAttributes
     {
         $this->attributes[$key] = $value;
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes(): array
+    {
+        return $this->attributes;
     }
 }

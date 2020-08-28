@@ -40,6 +40,6 @@
         <button class="btn btn-primary" wire:click="arrayAdd('{{ $field->name }}')">
             Add {{ Str::singular($field->label) }}
         </button>
-            @include(form_views_fields('error-help'))
+        @include(form_views_fields('error-help'))
     </div>
 </div>

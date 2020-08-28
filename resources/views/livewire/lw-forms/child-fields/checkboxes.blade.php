@@ -2,11 +2,16 @@
     @foreach($child_field->options as $value => $label)
         <div class="form-check">
             <input
-                id="{{ sprintf('%s.%s', $field->key , $child_field->name) }}"
-                type="checkbox"
-                class="form-check-input @error(sprintf('%s.%s', $field->key , $child_field->name)) is-invalid @enderror"
-                value="{{ $value }}"
-                wire:model.lazy="{{ sprintf('%s.%s', $field->key , $child_field->name) }}">
+            @if($child_field->getAttributes())
+                @foreach($field->getAttributes() as $name => $value)
+                    {{ $name }}="{{ $value }}"
+                @endforeach
+            @endif
+            id="{{ sprintf('%s.%s', $field->key , $child_field->name) }}"
+            type="checkbox"
+            class="form-check-input @error(sprintf('%s.%s', $field->key , $child_field->name)) is-invalid @enderror"
+            value="{{ $value }}"
+            wire:model.lazy="{{ sprintf('%s.%s', $field->key , $child_field->name) }}">
 
             <label class="form-check-label" for="{{ sprintf('%s.%s', $field->key , $child_field->name) }}">
                 {{ $label }}

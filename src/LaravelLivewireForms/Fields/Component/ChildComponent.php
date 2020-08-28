@@ -13,7 +13,6 @@ use Ramsey\Uuid\Uuid;
 
 class ChildComponent extends AbstractField
 {
-    protected $column_width;
 
     public function __construct($label, $name)
     {

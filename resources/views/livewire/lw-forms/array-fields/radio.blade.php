@@ -2,11 +2,16 @@
     @foreach($array_field->options as $value => $label)
         <div class="form-check">
             <input
-                id="{{ $field->key . '.' . $key . '.' . $array_field->name . '.' . $loop->index }}"
-                type="radio"
-                class="form-check-input @error($field->key . '.' . $key . '.' . $array_field->name) is-invalid @enderror"
-                value="{{ $value }}"
-                wire:model.lazy="{{ $field->key . '.' . $key . '.' . $array_field->name }}">
+            @if($array_field->getAttributes())
+                @foreach($field->getAttributes() as $name => $value)
+                    {{ $name }}="{{ $value }}"
+                @endforeach
+            @endif
+            id="{{ $field->key . '.' . $key . '.' . $array_field->name . '.' . $loop->index }}"
+            type="radio"
+            class="form-check-input @error($field->key . '.' . $key . '.' . $array_field->name) is-invalid @enderror"
+            value="{{ $value }}"
+            wire:model.lazy="{{ $field->key . '.' . $key . '.' . $array_field->name }}">
 
             <label class="form-check-label" for="{{ $field->key . '.' . $key . '.' . $array_field->name . '.' . $loop->index }}">
                 {{ $label }}

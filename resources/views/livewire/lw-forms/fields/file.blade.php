@@ -3,10 +3,15 @@
     <div class="col-md">
         <div class="custom-file">
             <input
-                id="{{ $field->name }}"
-                type="file"
-                class="custom-file-input @error($field->key) is-invalid @enderror"
-                {{ $field->file_multiple ? 'multiple' : '' }}>
+            @if($field->getAttributes())
+                @foreach($field->getAttributes() as $name => $value)
+                    {{ $name }}="{{ $value }}"
+                @endforeach
+            @endif
+            id="{{ $field->name }}"
+            type="file"
+            class="custom-file-input @error($field->key) is-invalid @enderror"
+            {{ $field->file_multiple ? 'multiple' : '' }}>
 
             <label class="custom-file-label" for="{{ $field->name }}">
                 {{ $field->placeholder }}

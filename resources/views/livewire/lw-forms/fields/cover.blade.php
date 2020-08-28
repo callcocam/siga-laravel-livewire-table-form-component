@@ -3,6 +3,11 @@
     <div class="col-md">
         <div class="custom-file">
             <input
+            @if($field->getAttributes())
+                @foreach($field->getAttributes() as $name => $value)
+                    {{ $name }}="{{ $value }}"
+                @endforeach
+            @endif
                 id="{{ $field->name }}"
                 type="file"
                 class="custom-file-input @error($field->key) is-invalid @enderror"
