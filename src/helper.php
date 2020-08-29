@@ -241,3 +241,64 @@ if (!function_exists('Calcular')) {
         return $ret;
     }
 }
+
+if (!function_exists('check_status')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param  string $path
+     * @return string
+     */
+    function check_status($status, $options = [
+        'published' => "success", 'draft' => "warning", 'deleted' => "danger"
+    ])
+    {
+        if (isset($options[$status]))
+            return $options[$status];
+
+
+        return "info";
+    }
+}
+
+
+if (!function_exists('get_tag_color')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param array $options
+     * @return string
+     */
+    function get_tag_color($options = [
+        '1' => "success", '2' => "warning", '3' => "danger", '4' => "primary", '5' => "info"
+    ])
+    {
+        $status = rand(1, 5);
+
+        if (isset($options[$status]))
+            return $options[$status];
+
+
+        return "info";
+    }
+}
+
+
+if (!function_exists('check_status_text')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param  string $path
+     * @return string
+     */
+    function check_status_text($status, $options = [
+        'published' => "Publicado", "draft" => "Rascunho", 'deleted' => "Deletado"
+    ])
+    {
+        if (isset($options[$status]))
+            return $options[$status];
+
+
+        return "Rascunho";
+    }
+}
